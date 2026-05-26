@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Техническое задание - спектакль «Молодожены» | Театр на Малой Бронной → Театр «Грань» (Новокуйбышевск)</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            background: #f0f2f5;
+            padding: 30px 20px;
+            color: #1e2a3a;
+        }
+        .container {
+            max-width: 1300px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        /* Шапка */
+        .header {
+            background: linear-gradient(135deg, #1e3c72 0%, #2b4c7c 100%);
+            color: white;
+            padding: 30px 40px;
+            text-align: center;
+        }
+        .header h1 {
+            font-size: 32px;
+            letter-spacing: 1px;
+            margin-bottom: 10px;
+        }
+        .header h2 {
+            font-size: 22px;
+            font-weight: 500;
+            margin-bottom: 8px;
+        }
+        .header p {
+            font-size: 18px;
+            opacity: 0.9;
+        }
+        /* Основное содержание */
+        .content {
+            padding: 30px 40px;
+        }
+        /* Секции */
+        .section {
+            margin-bottom: 40px;
+            break-inside: avoid;
+        }
+        .section-title {
+            font-size: 24px;
+            font-weight: 700;
+            color: #1e3c72;
+            border-left: 6px solid #e67e22;
+            padding-left: 18px;
+            margin-bottom: 20px;
+            background: #f8fafc;
+            line-height: 1.3;
+        }
+        .subsection {
+            margin: 20px 0 10px 0;
+            font-weight: 600;
+            font-size: 18px;
+            color: #2c3e50;
+        }
+        /* Таблицы */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+            font-size: 15px;
+            box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+        }
+        th {
+            background: #eef2f7;
+            padding: 12px 10px;
+            text-align: left;
+            border: 1px solid #d0d7de;
+            font-weight: 700;
+            color: #1e4663;
+        }
+        td {
+            padding: 10px;
+            border: 1px solid #e2e8f0;
+            vertical-align: top;
+        }
+        tr:hover {
+            background: #f9fafb;
+        }
+        /* Списки */
+        .list {
+            margin: 10px 0 10px 25px;
+        }
+        .list li {
+            margin: 8px 0;
+            line-height: 1.45;
+        }
+        /* Гиперссылки */
+        a {
+            color: #e67e22;
+            text-decoration: none;
+            border-bottom: 1px dotted #e67e22;
+        }
+        a:hover {
+            color: #bf5e0a;
+            border-bottom: 1px solid;
+        }
+        /* Контакты и подписи */
+        .contacts {
+            background: #f9f9fb;
+            padding: 20px;
+            border-radius: 12px;
+            margin: 20px 0;
+            border-left: 4px solid #e67e22;
+        }
+        .signatures {
+            margin-top: 30px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            gap: 15px;
+        }
+        .sign-item {
+            flex: 1;
+            min-width: 200px;
+            border-top: 1px solid #cbd5e1;
+            padding-top: 8px;
+            margin-top: 15px;
+        }
+        .footer-note {
+            text-align: center;
+            font-size: 13px;
+            color: #5b6e8c;
+            margin-top: 40px;
+            border-top: 1px solid #e2e8f0;
+            padding-top: 20px;
+        }
+        @media (max-width: 800px) {
+            .content {
+                padding: 20px;
+            }
+            .header h1 { font-size: 26px; }
+            .section-title { font-size: 20px; }
+            table, .signatures { font-size: 14px; }
+        }
+        /* Акцент для важных требований */
+        .warning-block {
+            background: #fff8e7;
+            border-left: 5px solid #f1c40f;
+            padding: 15px 20px;
+            margin: 20px 0;
+            border-radius: 8px;
+        }
+        .badge {
+            background: #e67e22;
+            color: white;
+            font-size: 12px;
+            padding: 2px 8px;
+            border-radius: 20px;
+            display: inline-block;
+            margin-right: 8px;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="header">
+        <h1>ТЕХНИЧЕСКОЕ ЗАДАНИЕ</h1>
+        <h2>на проведение спектакля «МОЛОДОЖЕНЫ»</h2>
+        <p>Театр на Малой Бронной</p>
+        <p>в <strong>ГБУК СО «Театр «Грань»</strong>, г. Новокуйбышевск</p>
+        <p>Июнь, 2026</p>
+    </div>
+
+    <div class="content">
+        <!-- Краткая информация о постановке -->
+        <div class="warning-block">
+            <strong>📌 Режиссёр-постановщик:</strong> Богомолов Константин<br>
+            <strong>🎨 Художник-постановщик:</strong> Ломакина Лариса<br>
+            <strong>💡 Художник по свету:</strong> Виноградов Иван<br>
+            <strong>🎵 Автор музыки:</strong> Сюткин Валерий<br>
+            <strong>💃 Хореограф:</strong> Николай Реутов<br>
+            <strong>📅 Премьера:</strong> 30 октября 2025 года
+        </div>
+
+        <!-- 1. Оснащение сцены -->
+        <div class="section">
+            <div class="section-title">1. ОСНАЩЕНИЕ СЦЕНЫ</div>
+            <ul class="list">
+                <li><span class="badge">Требование</span> Планшет сцены: деревянный, ровный, без щелей и сколов.</li>
+                <li><span class="badge">Требование</span> Нейтральный задник: чёрный или серый, высота ≥8 м, ширина ≥14 м, без складок.</li>
+                <li><span class="badge">Требование</span> Комплект чёрных кулис (1 комплект) для закрытия боковых конструкций.</li>
+                <li><span class="badge">Требование</span> Штанкетное оборудование: свободные подъемы, общая грузоподъёмность ≥500 кг.</li>
+                <li><span class="badge">Требование</span> Ремонтный набор: столярный клей, акриловые краски (чёрная/белая матовая), кисти, скотч, саморезы, инструменты.</li>
+                <li><span class="badge">Требование</span> Влажная уборка сцены до и после репетиций и спектаклей.</li>
+                <li><span class="badge">Требование</span> Грузовые лифты, рохли, театральные тележки, при необходимости – автопогрузчик.</li>
+            </ul>
+        </div>
+
+        <!-- 2. Световое оборудование (таблица) -->
+        <div class="section">
+            <div class="section-title">2. СВЕТОВОЕ ОБОРУДОВАНИЕ</div>
+            <table>
+                <thead>
+                    <tr><th>№</th><th>Тип оборудования</th><th>Кол-во</th><th>Ссылка на производителя</th></tr>
+                </thead>
+                <tbody>
+                    
+                    <tr>
+                        <td>1</td>
+                        <td>Прожекторы следящего света (Follower Spots)</td>
+                        <td>2</td>
+                        <td><a href="https://www.robe.cz/follow-spot/" target="_blank">https://www.robe.cz/follow-spot/</a></td>
+                    </tr>
+                    
+                    <tr>
+                        <td>2</td>
+                        <td>Параболические софиты PAR 64 LED</td>
+                        <td>20</td>
+                        <td><a href="https://www.chauvetprofessional.com/par/" target="_blank">https://www.chauvetprofessional.com/par/</a></td>
+                    </tr>
+                    
+                    <tr>
+                        <td>3</td>
+                        <td>Профильные прожекторы (Leko / Ellipsoidal)</td>
+                        <td>15</td>
+                        <td><a href="https://www.etcconnect.com/Products/Source-Four/" target="_blank">https://www.etcconnect.com/Products/Source-Four/</a></td>
+                    </tr>
+                    
+                    <tr>
+                        <td>4</td>
+                        <td>Мягкий свет (Fresnel)</td>
+                        <td>10</td>
+                        <td><a href="https://www.altmanlighting.com/fresnels/" target="_blank">https://www.altmanlighting.com/fresnels/</a></td>
+                    </tr>
+                    
+                    <tr>
+                        <td>5</td>
+                        <td>LED-приборы типа Wash (Zoom)</td>
+                        <td>8</td>
+                        <td><a href="https://www.ayrton.eu/products/wash/" target="_blank">https://www.ayrton.eu/products/wash/</a></td>
+                    </tr>
+                    
+                    <tr>
+                        <td>6</td>
+                        <td>LED-приборы типа Spot (Moving Head)</td>
+                        <td>4</td>
+                        <td><a href="https://www.claypaky.it/en/products/moving-head/" target="_blank">https://www.claypaky.it/en/products/moving-head/</a></td>
+                    </tr>
+                    
+                    <tr>
+                        <td>7</td>
+                        <td>Генератор дыма / хейзер (DMX)</td>
+                        <td>1</td>
+                        <td><a href="https://www.look-solutions.com/hazer/" target="_blank">https://www.look-solutions.com/hazer/</a></td>
+                    </tr>
+                    
+                </tbody>
+            </table>
+            <p style="font-size:14px; color:#5e6f8d;">* План развески и световая партитура предоставляются по прибытии режиссёра по свету.</p>
+        </div>
+
+        <!-- 3. Звуковое оборудование и связь -->
+        <div class="section">
+            <div class="section-title">3. ЗВУКОВОЕ ОБОРУДОВАНИЕ И СВЯЗЬ</div>
+            <table>
+                <thead>
+                    <tr><th>Тип оборудования</th><th>Кол-во</th><th>Ссылка</th></tr>
+                </thead>
+                <tbody>
+                    
+                    <tr>
+                        <td>Радиомикрофоны (ручные) Sennheiser EW 500 G4 / Shure ULXD</td>
+                        <td>4</td>
+                        <td><a href="https://www.sennheiser.com/wireless-microphone" target="_blank">https://www.sennheiser.com/wireless-microphone</a></td>
+                    </tr>
+                    
+                    <tr>
+                        <td>Радиомикрофоны (петличные) + DPA 4060/4061</td>
+                        <td>9</td>
+                        <td><a href="https://www.dpamicrophones.com/lavalier" target="_blank">https://www.dpamicrophones.com/lavalier</a></td>
+                    </tr>
+                    
+                    <tr>
+                        <td>Фронтальная акустическая система (FOH)</td>
+                        <td>1 компл.</td>
+                        <td><a href="https://www.l-acoustics.com/" target="_blank">https://www.l-acoustics.com/</a></td>
+                    </tr>
+                    
+                    <tr>
+                        <td>Сценические мониторы (foldback)</td>
+                        <td>4</td>
+                        <td><a href="https://www.dbaudio.com/monitors/" target="_blank">https://www.dbaudio.com/monitors/</a></td>
+                    </tr>
+                    
+                    <tr>
+                        <td>Цифровой звуковой пульт (≥24 канала)</td>
+                        <td>1</td>
+                        <td><a href="https://www.allen-heath.com/" target="_blank">https://www.allen-heath.com/</a></td>
+                    </tr>
+                    
+                </tbody>
+            </table>
+            <div class="subsection">Дополнительные требования по связи:</div>
+            <ul class="list">
+                <li>Стационарная связь (Intercom): режиссёрский пульт, завпост, звукорежиссёр, светорежиссёр.</li>
+                <li>Радиосвязь: 8 комплектов с гарнитурами для техслужб + мультиканальная рация для технического руководителя.</li>
+                <li>Трансляция вызова артистов на сцену и в гримёрные.</li>
+                <li>Фронтальная акустика (FOH) с ровной АЧХ, звуковое давление ≥105 дБ (предпочтительно L-Acoustics, d&b, Meyer).</li>
+                <li>4 активных сценических монитора (foldback) с раздельной коммутацией.</li>
+                <li>Батарейки Duracell AA (новые) на каждый спектакль и репетиции.</li>
+                <li>1 микрофон для объявлений, цифровой аудиоплеер (mini-jack, RCA).</li>
+            </ul>
+        </div>
+
+        <!-- 4. График работ -->
+        <div class="section">
+            <div class="section-title">4. ГРАФИК РАБОТ</div>
+            <table>
+                <thead>
+                    <tr><th>Дата</th><th>Время начала</th><th>Время окончания</th><th>Вид работ</th><th>Персонал принимающей стороны</th></tr>
+                </thead>
+                <tbody>
+                    
+                    <tr>
+                        <td>10.06.2026</td>
+                        <td>9:00</td>
+                        <td>10:00</td>
+                        <td>Влажная уборка сцены</td>
+                        <td>Уборщица – 2 чел.</td>
+                    </tr>
+                    
+                    <tr>
+                        <td>10.06.2026</td>
+                        <td>10:00</td>
+                        <td>11:00</td>
+                        <td>Разгрузка декораций</td>
+                        <td>Грузчик – 4 чел.</td>
+                    </tr>
+                    
+                    <tr>
+                        <td>10.06.2026</td>
+                        <td>11:00</td>
+                        <td>15:00</td>
+                        <td>Монтаж сценического оформления, света, звука</td>
+                        <td>Осветитель – 2, монтировщик – 2, звукорежиссёр – 1</td>
+                    </tr>
+                    
+                    <tr>
+                        <td>10.06.2026</td>
+                        <td>15:00</td>
+                        <td>17:00</td>
+                        <td>Монтаж павильона и световых приборов в декорациях</td>
+                        <td>Осветитель – 2, монтировщик – 2</td>
+                    </tr>
+                    
+                    <tr>
+                        <td>10.06.2026</td>
+                        <td>17:00</td>
+                        <td>22:00</td>
+                        <td>Направка света, настройка видео</td>
+                        <td>Осветитель – 2, видеоинженер – 1</td>
+                    </tr>
+                    
+                    <tr>
+                        <td>11.06.2026</td>
+                        <td>8:00</td>
+                        <td>9:00</td>
+                        <td>Влажная уборка сцены</td>
+                        <td>Уборщица – 2 чел.</td>
+                    </tr>
+                    
+                    <tr>
+                        <td>11.06.2026</td>
+                        <td>9:00</td>
+                        <td>10:00</td>
+                        <td>Подготовка сцены к репетиции</td>
+                        <td>Монтировщик – 1, звукорежиссёр – 1</td>
+                    </tr>
+                    
+                    <tr>
+                        <td>11.06.2026</td>
+                        <td>10:00</td>
+                        <td>15:00</td>
+                        <td>Репетиция спектакля</td>
+                        <td>Все службы</td>
+                    </tr>
+                    
+                    <tr>
+                        <td>11.06.2026</td>
+                        <td>15:00</td>
+                        <td>16:00</td>
+                        <td>Перерыв</td>
+                        <td></td>
+                    </tr>
+                    
+                    <tr>
+                        <td>11.06.2026</td>
+                        <td>16:00</td>
+                        <td>17:30</td>
+                        <td>Подготовка к спектаклю</td>
+                        <td>Все службы</td>
+                    </tr>
+                    
+                    <tr>
+                        <td>11.06.2026</td>
+                        <td>17:30</td>
+                        <td>18:30</td>
+                        <td>Влажная уборка сцены</td>
+                        <td>Уборщица – 2 чел.</td>
+                    </tr>
+                    
+                    <tr>
+                        <td>11.06.2026</td>
+                        <td>18:50</td>
+                        <td>19:00</td>
+                        <td>Запуск зрителя</td>
+                        <td>Администратор – 1</td>
+                    </tr>
+                    
+                    <tr>
+                        <td>11.06.2026</td>
+                        <td>19:00</td>
+                        <td>21:00</td>
+                        <td>Спектакль «Молодожены» 1 акт</td>
+                        <td>Все службы</td>
+                    </tr>
+                    
+                    <tr>
+                        <td>11.06.2026</td>
+                        <td>21:00</td>
+                        <td>21:15</td>
+                        <td>Антракт</td>
+                        <td>Администратор – 1</td>
+                    </tr>
+                    
+                    <tr>
+                        <td>11.06.2026</td>
+                        <td>21:15</td>
+                        <td>22:15</td>
+                        <td>Спектакль «Молодожены» 2 акт</td>
+                        <td>Все службы</td>
+                    </tr>
+                    
+                    <tr>
+                        <td>11.06.2026</td>
+                        <td>22:30</td>
+                        <td>24:00</td>
+                        <td>Демонтаж, упаковка</td>
+                        <td>Монтировщики – 6 чел.</td>
+                    </tr>
+                    
+                    <tr>
+                        <td>12.06.2026</td>
+                        <td>0:00</td>
+                        <td>1:30</td>
+                        <td>Погрузка декораций</td>
+                        <td>Грузчики – 6 чел.</td>
+                    </tr>
+                    
+                </tbody>
+            </table>
+            <p style="font-size:13px; color:#6c757d;">* До начала монтажа зрительный зал должен быть собран согласно техническому заданию.</p>
+        </div>
+
+        <!-- 5. Реквизиторский цех -->
+        <div class="section">
+            <div class="section-title">5. РЕКВИЗИТОРСКИЙ ЦЕХ</div>
+            <ul class="list">
+                <li>Стол для реквизита (2,0×1,0 м) – 2 шт. (левая и правая сторона сцены).</li>
+                <li>Утюг, отпариватель для приведения в порядок костюмов и реквизита.</li>
+                <li>Упаковочная плёнка (стрейч) и скотч.</li>
+                <li>Набор для экстренного ремонта: нитки, иглы, клей «Момент», двусторонний скотч, поролон.</li>
+            </ul>
+        </div>
+
+        <!-- 6. Костюмерный цех -->
+        <div class="section">
+            <div class="section-title">6. КОСТЮМЕРНЫЙ ЦЕХ</div>
+            <ul class="list">
+                <li>Каталки для костюмов (вешала на колёсах) – 4 шт.</li>
+                <li>Отпариватели (паровые швабры/пистолеты) – 2 шт.</li>
+                <li>Утюги и гладильные доски – 2 комплекта.</li>
+            </ul>
+        </div>
+
+        <!-- 7. Помещения -->
+        <div class="section">
+            <div class="section-title">7. ПОМЕЩЕНИЯ</div>
+            <div class="subsection">Гримёрные уборные:</div>
+            <ul class="list">
+                <li>Мужские: 2 комнаты на 4-5 человек.</li>
+                <li>Женские: 2 комнаты на 4-5 человек.</li>
+                <li>Оснащение: свет, зеркала, стулья, вешалки.</li>
+                <li>Гигиенические комнаты рядом (умывальник, душ, туалет, мыло, туалетная бумага).</li>
+            </ul>
+            <div class="subsection">Технические помещения:</div>
+            <ul class="list">
+                <li>Комната для технического персонала: 20 человек (раздевалка, отдых, душ, Wi-Fi).</li>
+                <li>Комната для администраторов и дирекции (стол, стулья, Wi-Fi).</li>
+            </ul>
+        </div>
+
+        <!-- 8. Общие требования -->
+        <div class="section">
+            <div class="section-title">8. ОБЩИЕ ТРЕБОВАНИЯ</div>
+            <ul class="list">
+                <li>Трансфер: обеспечить трансфер технического персонала в случае удалённости места проживания от театра (ночные смены, ранние заезды).</li>
+                <li>Питание: предоставить питьевую воду (бутилированную) на сцене и в гримёрных.</li>
+                <li>Персонал принимающей стороны: количество и специализация согласовываются согласно графику работ. Обеспечить дежурных рабочих сцены на время монтажа, репетиций, спектаклей и демонтажа.</li>
+            </ul>
+        </div>
+
+        <!-- Контакты и подписи -->
+        <div class="contacts">
+            <strong>📞 ОТВЕТСТВЕННЫЕ ОТ ТЕАТРА НА МАЛОЙ БРОННОЙ</strong><br>
+            Заведующий постановочной частью (техническая часть): Петров П.П. — +7 999 222-11-33, <a href="mailto:petrov@malaya-bronnaya.ru">petrov@malaya-bronnaya.ru</a><br>
+            Гастрольная группа, связи с общественностью: Богомолова Т.Т. — +7 966 777-55-00, <a href="mailto:bogomolova@malaya-bronnaya.ru">bogomolova@malaya-bronnaya.ru</a>
+        </div>
+
+        <div class="signatures">
+            <div class="sign-item">Главный инженер ____________________</div>
+            <div class="sign-item">Зав. постановочной частью ____________________</div>
+            <div class="sign-item">Зав. костюмерным цехом ____________________</div>
+            <div class="sign-item">Зав. реквизиторским цехом ____________________</div>
+            <div class="sign-item">Зав. осветительным цехом ____________________</div>
+            <div class="sign-item">Зав. звукоцехом ____________________</div>
+        </div>
+
+        <div class="footer-note">
+            Настоящее техническое задание является обязательным для исполнения принимающей стороной — ГБУК СО «Театр «Грань», г. Новокуйбышевск.
+        </div>
+    </div>
+</div>
+</body>
+</html>
