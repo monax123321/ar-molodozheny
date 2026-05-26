@@ -42,7 +42,6 @@
             gap: 10px;
             padding: 0 15px;
         }
-        /* Бургер-кнопка (скрыта на десктопе) */
         .burger {
             display: none;
             font-size: 28px;
@@ -470,7 +469,43 @@
             </div>
             </div></section>
 
-    <section id="drawings"><h2>📐 Чертежи общего вида (План / Фронт / Разрез)</h2><div class="drawing-comparator"><div class="toggle-buttons"><button class="toggle-btn active" data-layer="plan">План</button><button class="toggle-btn" data-layer="front">Фронт</button><button class="toggle-btn" data-layer="razrez">Разрез</button></div><div class="drawing-layer active-layer" id="plan-layer"><a href="А2 План.pdf" target="_blank">📄 Открыть plan</a><br><a href="А2 План.pdf" download>📥 Скачать</a></div><div class="drawing-layer " id="front-layer"><a href="А2 Фронт.pdf" target="_blank">📄 Открыть front</a><br><a href="А2 Фронт.pdf" download>📥 Скачать</a></div><div class="drawing-layer " id="razrez-layer"><a href="А2 Разрез_А-А.pdf" target="_blank">📄 Открыть razrez</a><br><a href="А2 Разрез_А-А.pdf" download>📥 Скачать</a></div></div></section>
+    <section id="drawings"><h2>📐 Чертежи общего вида (План / Фронт / Разрез)</h2><div class="drawing-comparator"><div class="toggle-buttons"><button class="toggle-btn active" data-layer="plan">План</button><button class="toggle-btn" data-layer="front">Фронт</button><button class="toggle-btn" data-layer="razrez">Разрез</button></div>
+                <div class="drawing-layer active-layer" id="plan-layer">
+                    <div class="card">
+                        <img src="previews/А2 План_preview.png" loading="lazy">
+                        <div class="card-title">А2 План</div>
+                        <div class="card-footer">
+                            <a href="А2 План.pdf" target="_blank">📄 Открыть</a>
+                            <a href="А2 План.pdf" download>📥 Скачать</a>
+                            <span class="zoom-hint">🔍</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="drawing-layer" id="front-layer">
+                    <div class="card">
+                        <img src="previews/А2 Фронт_preview.png" loading="lazy">
+                        <div class="card-title">А2 Фронт</div>
+                        <div class="card-footer">
+                            <a href="А2 Фронт.pdf" target="_blank">📄 Открыть</a>
+                            <a href="А2 Фронт.pdf" download>📥 Скачать</a>
+                            <span class="zoom-hint">🔍</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="drawing-layer" id="razrez-layer">
+                    <div class="card">
+                        <img src="previews/А2 Разрез_А-А_preview.png" loading="lazy">
+                        <div class="card-title">А2 Разрез_А-А</div>
+                        <div class="card-footer">
+                            <a href="А2 Разрез_А-А.pdf" target="_blank">📄 Открыть</a>
+                            <a href="А2 Разрез_А-А.pdf" download>📥 Скачать</a>
+                            <span class="zoom-hint">🔍</span>
+                        </div>
+                    </div>
+                </div>
+                </div></section>
     <section id="planning"><h2>📏 Планировки (чертежи мебели и расположения)</h2><div class='gallery'>
                 <div class="card" data-type="pdf">
                     <img src="previews/А2 План_Мебель_1_preview.png" loading="lazy">
@@ -1031,13 +1066,11 @@
 <div class="lightbox" onclick="closeLightbox()"><img id="lightbox-img" src=""></div>
 
 <script>
-    // Бургер-меню
     const burger = document.getElementById('burgerBtn');
     const navMenu = document.getElementById('navMenu');
     burger.addEventListener('click', () => {
         navMenu.classList.toggle('open');
     });
-    // Закрываем меню после клика по ссылке (на мобильных)
     document.querySelectorAll('.sticky-nav a').forEach(link => {
         link.addEventListener('click', () => {
             if (window.innerWidth <= 800) {
