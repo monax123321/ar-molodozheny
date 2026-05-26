@@ -4,16 +4,71 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
     <title>Аттестационная работа - Молодожены</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
     <style>
+        /* ---------- БАЗОВЫЕ СТИЛИ ---------- */
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
-            background: url('фон.jpg') no-repeat center center fixed;
-            background-size: cover;
-            backdrop-filter: blur(8px);
+            background: #050505;
             color: #EEEEEE;
-            font-family: 'Segoe UI', Roboto, sans-serif;
+            font-family: 'Inter', 'Segoe UI', Roboto, sans-serif;
+            overflow-x: hidden;
             padding-top: 70px;
         }
+        /* Intro */
+        #intro {
+            position: fixed;
+            inset: 0;
+            background: black;
+            z-index: 10000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            animation: introFade 3s forwards;
+            animation-delay: 2s;
+        }
+        #intro h1 {
+            font-size: 5vw;
+            letter-spacing: 10px;
+            opacity: 0;
+            animation: titleAppear 2s forwards;
+        }
+        @keyframes titleAppear {
+            from { opacity: 0; transform: translateY(40px); filter: blur(10px); }
+            to { opacity: 1; transform: translateY(0); filter: blur(0); }
+        }
+        @keyframes introFade {
+            to { opacity: 0; visibility: hidden; }
+        }
+        /* Спотлайт */
+        .spotlight {
+            position: fixed;
+            width: 500px;
+            height: 500px;
+            border-radius: 50%;
+            pointer-events: none;
+            background: radial-gradient(circle, rgba(255,220,150,0.18) 0%, rgba(255,220,150,0.08) 25%, rgba(0,0,0,0) 70%);
+            transform: translate(-50%, -50%);
+            mix-blend-mode: screen;
+            z-index: 9999;
+        }
+        /* Шум */
+        .noise {
+            position: fixed;
+            inset: 0;
+            background-image: url("https://grainy-gradients.vercel.app/noise.svg");
+            opacity: 0.08;
+            pointer-events: none;
+            z-index: 999;
+        }
+        /* Частицы */
+        #particles {
+            position: fixed;
+            inset: 0;
+            z-index: -1;
+            pointer-events: none;
+        }
+        /* Прогресс-бар */
         .progress-bar {
             position: fixed;
             top: 0;
@@ -25,24 +80,28 @@
             transition: width 0.1s;
             box-shadow: 0 0 5px #D4AF37;
         }
+        /* Контейнер */
         .container {
-            background: rgba(10,10,10,0.75);
-            backdrop-filter: blur(4px);
             max-width: 1300px;
             margin: 0 auto;
             padding: 0 20px 40px;
+            position: relative;
+            z-index: 1;
         }
-        /* Главное меню — фиксировано и всегда видно */
+        /* Sticky меню (гарантированная фиксация) */
         .sticky-nav {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            background: #1C2E4A;
-            backdrop-filter: blur(10px);
-            z-index: 10000;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.3);
-            padding: 10px 0;
+            position: fixed !important;
+            top: 0 !important;
+            left: 0 !important;
+            right: 0 !important;
+            width: 100% !important;
+            background: #1C2E4A !important;
+            backdrop-filter: blur(10px) !important;
+            z-index: 10000 !important;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.3) !important;
+            padding: 10px 0 !important;
+            transform: none !important;
+            filter: none !important;
         }
         .nav-wrapper {
             max-width: 1300px;
@@ -103,6 +162,7 @@
             font-weight: bold;
             box-shadow: 0 0 8px #D4AF37;
         }
+        /* Кнопка наверх */
         .go-top {
             position: fixed;
             bottom: 30px;
@@ -127,21 +187,34 @@
             opacity: 1;
             visibility: visible;
         }
-        .go-top:hover {
-            transform: scale(1.1);
-        }
-        header {
-            background: linear-gradient(135deg, #1C2E4A, #0f1a2f);
-            padding: 30px;
-            border-radius: 24px;
-            margin-bottom: 30px;
+        /* Шапка (Hero) */
+        .hero {
+            height: 60vh;
             display: flex;
-            justify-content: space-between;
             align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+            margin-bottom: 40px;
+            background: rgba(0,0,0,0.3);
+            border-radius: 30px;
         }
-        h1 { border-left: 5px solid #D4AF37; padding-left: 20px; font-size: 2rem; }
-        h2 { border-bottom: 2px solid #D4AF37; display: inline-block; margin: 40px 0 20px 0; padding-bottom: 5px; }
-        h3 { margin: 20px 0 10px 0; color: #D4AF37; }
+        .hero h1 {
+            font-size: 3rem;
+            border-left: none;
+            padding-left: 0;
+        }
+        /* Остальные стили (галереи, карточки, компаратор) - без изменений */
+        h2 {
+            border-bottom: 2px solid #D4AF37;
+            display: inline-block;
+            margin: 40px 0 20px 0;
+            padding-bottom: 5px;
+        }
+        h3 {
+            margin: 20px 0 10px 0;
+            color: #D4AF37;
+        }
         .gallery {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
@@ -163,27 +236,116 @@
         .card[data-type="pdf"] { border-top-color: #1C2E4A; }
         .card[data-type="image"] { border-top-color: #666; }
         .card[data-type="prokat"] { border-top-color: #D4AF37; }
-        .card-title { margin: 8px 0; font-weight: bold; color: #D4AF37; word-break: break-word; }
+        .card-title {
+            margin: 8px 0;
+            font-weight: bold;
+            color: #D4AF37;
+            word-break: break-word;
+        }
         .prokat-icon, .pdf-icon { font-size: 3rem; margin: 10px 0; }
-        .card img { width: 100%; height: auto; border-radius: 16px; cursor: pointer; max-height: 300px; object-fit: contain; }
-        .card-footer { margin-top: 10px; display: flex; justify-content: center; gap: 12px; flex-wrap: wrap; }
-        .zoom-hint { font-size: 0.75rem; color: #AAAAAA; background: #2a2a2a; padding: 4px 8px; border-radius: 20px; }
-        @keyframes fadeInUp { to { opacity: 1; transform: translateY(0); } }
-        .drawing-comparator { background: #151515; padding: 20px; border-radius: 24px; margin: 20px 0; }
-        .toggle-buttons { display: flex; gap: 12px; justify-content: center; margin-bottom: 20px; }
-        .toggle-btn { padding: 8px 24px; background: #2a2a2a; border: none; border-radius: 40px; cursor: pointer; color: #EEEEEE; }
-        .toggle-btn.active { background: #D4AF37; color: #1C2E4A; font-weight: bold; }
-        .drawing-layer { display: none; text-align: center; }
-        .drawing-layer.active-layer { display: block; }
-        .btn { display: inline-block; background: #D4AF37; color: #1C2E4A; padding: 8px 20px; border-radius: 40px; text-decoration: none; margin: 10px 0; }
-        .lightbox { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.95); justify-content: center; align-items: center; z-index: 2000; }
-        .lightbox img { max-width: 90%; max-height: 90%; border-radius: 16px; }
-        footer { text-align: center; margin-top: 50px; padding: 20px; border-top: 1px solid #333; }
-        section { scroll-margin-top: 85px; }
+        .card img {
+            width: 100%;
+            height: auto;
+            border-radius: 16px;
+            cursor: pointer;
+            max-height: 300px;
+            object-fit: contain;
+        }
+        .card-footer {
+            margin-top: 10px;
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+        .zoom-hint {
+            font-size: 0.75rem;
+            color: #AAAAAA;
+            background: #2a2a2a;
+            padding: 4px 8px;
+            border-radius: 20px;
+        }
+        @keyframes fadeInUp {
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .drawing-comparator {
+            background: #151515;
+            padding: 20px;
+            border-radius: 24px;
+            margin: 20px 0;
+        }
+        .toggle-buttons {
+            display: flex;
+            gap: 12px;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+        .toggle-btn {
+            padding: 8px 24px;
+            background: #2a2a2a;
+            border: none;
+            border-radius: 40px;
+            cursor: pointer;
+            color: #EEEEEE;
+        }
+        .toggle-btn.active {
+            background: #D4AF37;
+            color: #1C2E4A;
+            font-weight: bold;
+        }
+        .drawing-layer {
+            display: none;
+            text-align: center;
+        }
+        .drawing-layer.active-layer {
+            display: block;
+        }
+        .btn {
+            display: inline-block;
+            background: #D4AF37;
+            color: #1C2E4A;
+            padding: 8px 20px;
+            border-radius: 40px;
+            text-decoration: none;
+            margin: 10px 0;
+        }
+        .lightbox {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.95);
+            justify-content: center;
+            align-items: center;
+            z-index: 2000;
+        }
+        .lightbox img {
+            max-width: 90%;
+            max-height: 90%;
+            border-radius: 16px;
+        }
+        footer {
+            text-align: center;
+            margin-top: 50px;
+            padding: 20px;
+            border-top: 1px solid #333;
+        }
+        section {
+            scroll-margin-top: 85px;
+        }
     </style>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
 </head>
 <body>
+<div id="intro"><h1>АР МОЛОДОЖЕНЫ</h1></div>
+<div class="spotlight"></div>
+<div class="noise"></div>
+<canvas id="particles"></canvas>
 <div class="progress-bar" id="progressBar"></div>
+
 <div class="sticky-nav">
     <div class="burger" id="burgerBtn">☰</div>
     <div class="nav-wrapper" id="navMenu">
@@ -205,7 +367,7 @@
 <a href="#" class="go-top" id="goTopBtn">↑</a>
 
 <div class="container">
-    <header>
+    <header class="hero">
         <div>
             <h1>Художественно-технологическая разработка<br>спектакля «Молодожены»</h1>
             <p>Режиссёр: К. Богомолов | Художник: Л. Ломакина | Студент: Глухов И.А. | 2026</p>
@@ -1016,6 +1178,80 @@
 <div class="lightbox" onclick="closeLightbox()"><img id="lightbox-img" src=""></div>
 
 <script>
+    // ===== SPOTLIGHT =====
+    const spotlight = document.querySelector('.spotlight');
+    document.addEventListener('mousemove', (e) => {
+        spotlight.style.left = e.clientX + 'px';
+        spotlight.style.top = e.clientY + 'px';
+    });
+
+    // ===== ЧАСТИЦЫ =====
+    const canvas = document.getElementById('particles');
+    const ctx = canvas.getContext('2d');
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+    let particles = [];
+    for(let i = 0; i < 80; i++) {
+        particles.push({
+            x: Math.random() * canvas.width,
+            y: Math.random() * canvas.height,
+            r: Math.random() * 2,
+            speed: Math.random() * 0.5
+        });
+    }
+    function animateParticles() {
+        ctx.clearRect(0,0,canvas.width,canvas.height);
+        particles.forEach(p => {
+            p.y -= p.speed;
+            if(p.y < 0) p.y = canvas.height;
+            ctx.beginPath();
+            ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
+            ctx.fillStyle = 'rgba(255,255,255,0.3)';
+            ctx.fill();
+        });
+        requestAnimationFrame(animateParticles);
+    }
+    animateParticles();
+    window.addEventListener('resize', () => {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+        // пересоздадим частицы (опционально)
+    });
+
+    // ===== GSAP - появление секций =====
+    gsap.registerPlugin(ScrollTrigger);
+    gsap.utils.toArray('.section').forEach(section => {
+        gsap.from(section, {
+            opacity: 0,
+            y: 100,
+            duration: 1.5,
+            scrollTrigger: {
+                trigger: section,
+                start: 'top 80%',
+            }
+        });
+    });
+
+    // ===== ПРОГРЕСС-БАР =====
+    window.addEventListener('scroll', () => {
+        const winScroll = document.documentElement.scrollTop;
+        const height = document.documentElement.scrollHeight - window.innerHeight;
+        const scrolled = (winScroll / height) * 100;
+        document.getElementById('progressBar').style.width = scrolled + '%';
+    });
+
+    // ===== КНОПКА НАВЕРХ =====
+    const goTopBtn = document.getElementById('goTopBtn');
+    window.addEventListener('scroll', () => {
+        if (window.scrollY > 300) goTopBtn.classList.add('show');
+        else goTopBtn.classList.remove('show');
+    });
+    goTopBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+
+    // ===== БУРГЕР-МЕНЮ =====
     const burger = document.getElementById('burgerBtn');
     const navMenu = document.getElementById('navMenu');
     burger.addEventListener('click', () => {
@@ -1027,23 +1263,7 @@
         });
     });
 
-    window.addEventListener('scroll', () => {
-        const winScroll = document.documentElement.scrollTop;
-        const height = document.documentElement.scrollHeight - window.innerHeight;
-        const scrolled = (winScroll / height) * 100;
-        document.getElementById('progressBar').style.width = scrolled + '%';
-    });
-
-    const goTopBtn = document.getElementById('goTopBtn');
-    window.addEventListener('scroll', () => {
-        if (window.scrollY > 300) goTopBtn.classList.add('show');
-        else goTopBtn.classList.remove('show');
-    });
-    goTopBtn.addEventListener('click', (e) => {
-        e.preventDefault();
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-    });
-
+    // ===== ПОДСВЕТКА АКТИВНОГО ПУНКТА МЕНЮ =====
     const sections = document.querySelectorAll('section');
     const navLinks = document.querySelectorAll('.sticky-nav a');
     const observer = new IntersectionObserver((entries) => {
@@ -1059,6 +1279,7 @@
     }, { rootMargin: '-30% 0px -70% 0px' });
     sections.forEach(section => observer.observe(section));
 
+    // ===== ЛАЙТБОКС =====
     const allImgs = document.querySelectorAll('.gallery img, .card img');
     const lb = document.querySelector('.lightbox');
     const lbImg = document.getElementById('lightbox-img');
@@ -1069,6 +1290,7 @@
     }));
     function closeLightbox() { lb.style.display = 'none'; }
 
+    // ===== ПЕРЕКЛЮЧАТЕЛЬ ЧЕРТЕЖЕЙ =====
     const tBtns = document.querySelectorAll('.toggle-btn');
     const layers = document.querySelectorAll('.drawing-layer');
     if(tBtns.length) {
@@ -1081,6 +1303,7 @@
         }));
     }
 
+    // ===== ПЛАВНАЯ ПРОКРУТКА ДЛЯ МЕНЮ =====
     document.querySelectorAll('.sticky-nav a').forEach(anchor => {
         anchor.addEventListener('click', function(e) {
             e.preventDefault();
@@ -1090,6 +1313,7 @@
         });
     });
 
+    // ===== АНИМАЦИЯ ПОЯВЛЕНИЯ КАРТОЧЕК (дополнительно к GSAP) =====
     const cards = document.querySelectorAll('.card');
     const cardsObserver = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
