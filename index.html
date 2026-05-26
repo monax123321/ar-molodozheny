@@ -14,7 +14,6 @@
             font-family: 'Segoe UI', Roboto, sans-serif;
             padding-top: 70px;
         }
-        /* Прогресс-бар прокрутки */
         .progress-bar {
             position: fixed;
             top: 0;
@@ -22,7 +21,7 @@
             width: 0%;
             height: 4px;
             background: #D4AF37;
-            z-index: 1001;
+            z-index: 10001;
             transition: width 0.1s;
             box-shadow: 0 0 5px #D4AF37;
         }
@@ -33,7 +32,7 @@
             margin: 0 auto;
             padding: 0 20px 40px;
         }
-        /* Sticky menu */
+        /* Главное меню — фиксировано и всегда видно */
         .sticky-nav {
             position: fixed;
             top: 0;
@@ -41,7 +40,7 @@
             width: 100%;
             background: #1C2E4A;
             backdrop-filter: blur(10px);
-            z-index: 1000;
+            z-index: 10000;
             box-shadow: 0 2px 10px rgba(0,0,0,0.3);
             padding: 10px 0;
         }
@@ -104,7 +103,6 @@
             font-weight: bold;
             box-shadow: 0 0 8px #D4AF37;
         }
-        /* Кнопка "Наверх" */
         .go-top {
             position: fixed;
             bottom: 30px;
@@ -131,7 +129,6 @@
         }
         .go-top:hover {
             transform: scale(1.1);
-            background: #D4AF37;
         }
         header {
             background: linear-gradient(135deg, #1C2E4A, #0f1a2f);
@@ -142,21 +139,9 @@
             justify-content: space-between;
             align-items: center;
         }
-        h1 {
-            border-left: 5px solid #D4AF37;
-            padding-left: 20px;
-            font-size: 2rem;
-        }
-        h2 {
-            border-bottom: 2px solid #D4AF37;
-            display: inline-block;
-            margin: 40px 0 20px 0;
-            padding-bottom: 5px;
-        }
-        h3 {
-            margin: 20px 0 10px 0;
-            color: #D4AF37;
-        }
+        h1 { border-left: 5px solid #D4AF37; padding-left: 20px; font-size: 2rem; }
+        h2 { border-bottom: 2px solid #D4AF37; display: inline-block; margin: 40px 0 20px 0; padding-bottom: 5px; }
+        h3 { margin: 20px 0 10px 0; color: #D4AF37; }
         .gallery {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
@@ -178,106 +163,23 @@
         .card[data-type="pdf"] { border-top-color: #1C2E4A; }
         .card[data-type="image"] { border-top-color: #666; }
         .card[data-type="prokat"] { border-top-color: #D4AF37; }
-        .card-title {
-            margin: 8px 0;
-            font-weight: bold;
-            color: #D4AF37;
-            word-break: break-word;
-        }
+        .card-title { margin: 8px 0; font-weight: bold; color: #D4AF37; word-break: break-word; }
         .prokat-icon, .pdf-icon { font-size: 3rem; margin: 10px 0; }
-        .card img {
-            width: 100%;
-            height: auto;
-            border-radius: 16px;
-            cursor: pointer;
-            max-height: 300px;
-            object-fit: contain;
-        }
-        .card-footer {
-            margin-top: 10px;
-            display: flex;
-            justify-content: center;
-            gap: 12px;
-            flex-wrap: wrap;
-        }
-        .zoom-hint {
-            font-size: 0.75rem;
-            color: #AAAAAA;
-            background: #2a2a2a;
-            padding: 4px 8px;
-            border-radius: 20px;
-        }
-        @keyframes fadeInUp {
-            to { opacity: 1; transform: translateY(0); }
-        }
-        .drawing-comparator {
-            background: #151515;
-            padding: 20px;
-            border-radius: 24px;
-            margin: 20px 0;
-        }
-        .toggle-buttons {
-            display: flex;
-            gap: 12px;
-            justify-content: center;
-            margin-bottom: 20px;
-        }
-        .toggle-btn {
-            padding: 8px 24px;
-            background: #2a2a2a;
-            border: none;
-            border-radius: 40px;
-            cursor: pointer;
-            color: #EEEEEE;
-            transition: 0.1s;
-        }
-        .toggle-btn.active {
-            background: #D4AF37;
-            color: #1C2E4A;
-            font-weight: bold;
-        }
-        .drawing-layer {
-            display: none;
-            text-align: center;
-        }
-        .drawing-layer.active-layer {
-            display: block;
-        }
-        .btn {
-            display: inline-block;
-            background: #D4AF37;
-            color: #1C2E4A;
-            padding: 8px 20px;
-            border-radius: 40px;
-            text-decoration: none;
-            margin: 10px 0;
-        }
-        .lightbox {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0,0,0,0.95);
-            justify-content: center;
-            align-items: center;
-            z-index: 2000;
-        }
-        .lightbox img {
-            max-width: 90%;
-            max-height: 90%;
-            border-radius: 16px;
-        }
-        footer {
-            text-align: center;
-            margin-top: 50px;
-            padding: 20px;
-            border-top: 1px solid #333;
-        }
-        section {
-            scroll-margin-top: 85px;
-        }
+        .card img { width: 100%; height: auto; border-radius: 16px; cursor: pointer; max-height: 300px; object-fit: contain; }
+        .card-footer { margin-top: 10px; display: flex; justify-content: center; gap: 12px; flex-wrap: wrap; }
+        .zoom-hint { font-size: 0.75rem; color: #AAAAAA; background: #2a2a2a; padding: 4px 8px; border-radius: 20px; }
+        @keyframes fadeInUp { to { opacity: 1; transform: translateY(0); } }
+        .drawing-comparator { background: #151515; padding: 20px; border-radius: 24px; margin: 20px 0; }
+        .toggle-buttons { display: flex; gap: 12px; justify-content: center; margin-bottom: 20px; }
+        .toggle-btn { padding: 8px 24px; background: #2a2a2a; border: none; border-radius: 40px; cursor: pointer; color: #EEEEEE; }
+        .toggle-btn.active { background: #D4AF37; color: #1C2E4A; font-weight: bold; }
+        .drawing-layer { display: none; text-align: center; }
+        .drawing-layer.active-layer { display: block; }
+        .btn { display: inline-block; background: #D4AF37; color: #1C2E4A; padding: 8px 20px; border-radius: 40px; text-decoration: none; margin: 10px 0; }
+        .lightbox { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.95); justify-content: center; align-items: center; z-index: 2000; }
+        .lightbox img { max-width: 90%; max-height: 90%; border-radius: 16px; }
+        footer { text-align: center; margin-top: 50px; padding: 20px; border-top: 1px solid #333; }
+        section { scroll-margin-top: 85px; }
     </style>
 </head>
 <body>
@@ -1114,22 +1016,17 @@
 <div class="lightbox" onclick="closeLightbox()"><img id="lightbox-img" src=""></div>
 
 <script>
-    // Бургер-меню
     const burger = document.getElementById('burgerBtn');
     const navMenu = document.getElementById('navMenu');
     burger.addEventListener('click', () => {
         navMenu.classList.toggle('open');
     });
-    // Закрытие бургер-меню после клика по ссылке
     document.querySelectorAll('.sticky-nav a').forEach(link => {
         link.addEventListener('click', () => {
-            if (window.innerWidth <= 800) {
-                navMenu.classList.remove('open');
-            }
+            if (window.innerWidth <= 800) navMenu.classList.remove('open');
         });
     });
 
-    // Прогресс-бар прокрутки
     window.addEventListener('scroll', () => {
         const winScroll = document.documentElement.scrollTop;
         const height = document.documentElement.scrollHeight - window.innerHeight;
@@ -1137,44 +1034,31 @@
         document.getElementById('progressBar').style.width = scrolled + '%';
     });
 
-    // Кнопка "Наверх"
     const goTopBtn = document.getElementById('goTopBtn');
     window.addEventListener('scroll', () => {
-        if (window.scrollY > 300) {
-            goTopBtn.classList.add('show');
-        } else {
-            goTopBtn.classList.remove('show');
-        }
+        if (window.scrollY > 300) goTopBtn.classList.add('show');
+        else goTopBtn.classList.remove('show');
     });
     goTopBtn.addEventListener('click', (e) => {
         e.preventDefault();
         window.scrollTo({ top: 0, behavior: 'smooth' });
     });
 
-    // Подсветка активного пункта меню при прокрутке
     const sections = document.querySelectorAll('section');
     const navLinks = document.querySelectorAll('.sticky-nav a');
-    const observerOptions = {
-        root: null,
-        rootMargin: '-30% 0px -70% 0px',
-        threshold: 0
-    };
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
                 const id = entry.target.getAttribute('id');
                 navLinks.forEach(link => {
                     link.classList.remove('active');
-                    if (link.getAttribute('href') === '#' + id) {
-                        link.classList.add('active');
-                    }
+                    if (link.getAttribute('href') === '#' + id) link.classList.add('active');
                 });
             }
         });
-    }, observerOptions);
+    }, { rootMargin: '-30% 0px -70% 0px' });
     sections.forEach(section => observer.observe(section));
 
-    // Лайтбокс для изображений
     const allImgs = document.querySelectorAll('.gallery img, .card img');
     const lb = document.querySelector('.lightbox');
     const lbImg = document.getElementById('lightbox-img');
@@ -1185,7 +1069,6 @@
     }));
     function closeLightbox() { lb.style.display = 'none'; }
 
-    // Переключатель чертежей
     const tBtns = document.querySelectorAll('.toggle-btn');
     const layers = document.querySelectorAll('.drawing-layer');
     if(tBtns.length) {
@@ -1198,7 +1081,6 @@
         }));
     }
 
-    // Плавная прокрутка при клике на пункты меню
     document.querySelectorAll('.sticky-nav a').forEach(anchor => {
         anchor.addEventListener('click', function(e) {
             e.preventDefault();
@@ -1208,7 +1090,6 @@
         });
     });
 
-    // Анимация появления карточек
     const cards = document.querySelectorAll('.card');
     const cardsObserver = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
