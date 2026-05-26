@@ -5,454 +5,875 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
     <title>Аттестационная работа - Молодожены</title>
     <style>
-        *{margin:0;padding:0;box-sizing:border-box}
-        body{background: url('фон.jpg') no-repeat center center fixed; background-size: cover; backdrop-filter: blur(8px); color:#EEEEEE; font-family:'Segoe UI',Roboto,sans-serif; padding-top:70px}
-        .container{background: rgba(10,10,10,0.75); backdrop-filter: blur(4px); max-width:1300px; margin:0 auto; padding:0 20px 40px}
-        .sticky-nav{position:fixed;top:0;left:0;width:100%;background:#1C2E4A;backdrop-filter:blur(10px);z-index:1000;padding:10px 0}
-        .nav-wrapper{max-width:1300px;margin:0 auto;display:flex;flex-wrap:wrap;justify-content:center;gap:10px}
-        .sticky-nav a{color:#EEEEEE;text-decoration:none;padding:8px 18px;border-radius:40px;background:#151515;transition:0.2s}
-        .sticky-nav a:hover{background:#D4AF37;color:#1C2E4A;transform:scale(1.05)}
-        header{background:linear-gradient(135deg,#1C2E4A,#0f1a2f);padding:30px;border-radius:24px;margin-bottom:30px; display:flex; justify-content:space-between; align-items:center}
-        h1{border-left:5px solid #D4AF37;padding-left:20px;font-size:2rem}
-        h2{border-bottom:2px solid #D4AF37;display:inline-block;margin:40px 0 20px 0;padding-bottom:5px}
-        h3{margin:20px 0 10px 0;color:#D4AF37}
-        .gallery{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:25px;margin:20px 0}
-        .card{background:#151515;border-radius:20px;padding:12px;text-align:center;transition:transform 0.25s; opacity:0; transform:translateY(15px); animation:fadeInUp 0.4s forwards; border-top:3px solid transparent}
-        .card[data-type="excel"]{border-top-color:#D4AF37}
-        .card[data-type="pdf"]{border-top-color:#1C2E4A}
-        .card[data-type="image"]{border-top-color:#666}
-        .card[data-type="prokat"]{border-top-color:#D4AF37}
-        .prokat-icon{font-size:3rem; margin:10px 0}
-        .card img{width:100%;height:auto;border-radius:16px;cursor:pointer;max-height:300px;object-fit:contain}
-        .card-footer{margin-top:10px;display:flex;justify-content:center;gap:12px;flex-wrap:wrap}
-        .zoom-hint{font-size:0.75rem;color:#AAAAAA;background:#2a2a2a;padding:4px 8px;border-radius:20px}
-        @keyframes fadeInUp{to{opacity:1;transform:translateY(0)}}
-        .drawing-comparator{background:#151515;padding:20px;border-radius:24px;margin:20px 0}
-        .toggle-buttons{display:flex;gap:12px;justify-content:center}
-        .toggle-btn{padding:8px 24px;background:#2a2a2a;border:none;border-radius:40px;cursor:pointer;color:#EEEEEE}
-        .toggle-btn.active{background:#D4AF37;color:#1C2E4A}
-        .drawing-layer{display:none;text-align:center}
-        .drawing-layer.active-layer{display:block}
-        .drawing-layer img{max-width:100%;max-height:65vh;border-radius:16px}
-        .btn{display:inline-block;background:#D4AF37;color:#1C2E4A;padding:8px 20px;border-radius:40px;text-decoration:none;margin:10px 0}
-        .lightbox{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.95);justify-content:center;align-items:center;z-index:2000}
-        .lightbox img{max-width:90%;max-height:90%}
-        footer{text-align:center;margin-top:50px;padding:20px;border-top:1px solid #333}
-        section{scroll-margin-top:85px}
-        @media (max-width:700px){.sticky-nav a{padding:4px 12px;font-size:0.8rem} .gallery{grid-template-columns:1fr}}
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            background: url('фон.jpg') no-repeat center center fixed;
+            background-size: cover;
+            backdrop-filter: blur(8px);
+            color: #EEEEEE;
+            font-family: 'Segoe UI', Roboto, sans-serif;
+            padding-top: 70px;
+        }
+        .container {
+            background: rgba(10,10,10,0.75);
+            backdrop-filter: blur(4px);
+            max-width: 1300px;
+            margin: 0 auto;
+            padding: 0 20px 40px;
+        }
+        /* Sticky menu */
+        .sticky-nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: #1C2E4A;
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+            padding: 10px 0;
+        }
+        .nav-wrapper {
+            max-width: 1300px;
+            margin: 0 auto;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
+            padding: 0 15px;
+        }
+        .sticky-nav a {
+            color: #EEEEEE;
+            text-decoration: none;
+            padding: 8px 18px;
+            border-radius: 40px;
+            background: #151515;
+            transition: 0.2s;
+            white-space: nowrap;
+        }
+        .sticky-nav a:hover {
+            background: #D4AF37;
+            color: #1C2E4A;
+            transform: scale(1.05);
+        }
+        header {
+            background: linear-gradient(135deg, #1C2E4A, #0f1a2f);
+            padding: 30px;
+            border-radius: 24px;
+            margin-bottom: 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        h1 {
+            border-left: 5px solid #D4AF37;
+            padding-left: 20px;
+            font-size: 2rem;
+        }
+        h2 {
+            border-bottom: 2px solid #D4AF37;
+            display: inline-block;
+            margin: 40px 0 20px 0;
+            padding-bottom: 5px;
+        }
+        h3 {
+            margin: 20px 0 10px 0;
+            color: #D4AF37;
+        }
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 25px;
+            margin: 20px 0;
+        }
+        .card {
+            background: #151515;
+            border-radius: 20px;
+            padding: 12px;
+            text-align: center;
+            transition: transform 0.25s;
+            opacity: 0;
+            transform: translateY(15px);
+            animation: fadeInUp 0.4s forwards;
+            border-top: 3px solid transparent;
+        }
+        .card[data-type="excel"] { border-top-color: #D4AF37; }
+        .card[data-type="pdf"] { border-top-color: #1C2E4A; }
+        .card[data-type="image"] { border-top-color: #666; }
+        .card[data-type="prokat"] { border-top-color: #D4AF37; }
+        .card-title {
+            margin: 8px 0;
+            font-weight: bold;
+            color: #D4AF37;
+            word-break: break-word;
+        }
+        .prokat-icon, .pdf-icon { font-size: 3rem; margin: 10px 0; }
+        .card img {
+            width: 100%;
+            height: auto;
+            border-radius: 16px;
+            cursor: pointer;
+            max-height: 300px;
+            object-fit: contain;
+        }
+        .card-footer {
+            margin-top: 10px;
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+        .zoom-hint {
+            font-size: 0.75rem;
+            color: #AAAAAA;
+            background: #2a2a2a;
+            padding: 4px 8px;
+            border-radius: 20px;
+        }
+        @keyframes fadeInUp {
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .drawing-comparator {
+            background: #151515;
+            padding: 20px;
+            border-radius: 24px;
+            margin: 20px 0;
+        }
+        .toggle-buttons {
+            display: flex;
+            gap: 12px;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+        .toggle-btn {
+            padding: 8px 24px;
+            background: #2a2a2a;
+            border: none;
+            border-radius: 40px;
+            cursor: pointer;
+            color: #EEEEEE;
+            transition: 0.1s;
+        }
+        .toggle-btn.active {
+            background: #D4AF37;
+            color: #1C2E4A;
+            font-weight: bold;
+        }
+        .drawing-layer {
+            display: none;
+            text-align: center;
+        }
+        .drawing-layer.active-layer {
+            display: block;
+        }
+        .btn {
+            display: inline-block;
+            background: #D4AF37;
+            color: #1C2E4A;
+            padding: 8px 20px;
+            border-radius: 40px;
+            text-decoration: none;
+            margin: 10px 0;
+        }
+        .lightbox {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.95);
+            justify-content: center;
+            align-items: center;
+            z-index: 2000;
+        }
+        .lightbox img {
+            max-width: 90%;
+            max-height: 90%;
+            border-radius: 16px;
+        }
+        footer {
+            text-align: center;
+            margin-top: 50px;
+            padding: 20px;
+            border-top: 1px solid #333;
+        }
+        section {
+            scroll-margin-top: 85px;
+        }
+        @media (max-width: 700px) {
+            .sticky-nav a { padding: 4px 12px; font-size: 0.8rem; }
+            .gallery { grid-template-columns: 1fr; }
+        }
     </style>
 </head>
 <body>
-<div class="sticky-nav"><div class="nav-wrapper">
-    <a href="#about">📖 О работе</a>
-    <a href="#eskizy">🎨 Эскизы</a>
-    <a href="#ikon">🖼️ Иконография</a>
-    <a href="#drawings">📐 План/Фронт/Разрез</a>
-    <a href="#planning">📏 Планировки</a>
-    <a href="#hardsoft">📦 Элементы</a>
-    <a href="#raboche">⚙️ Рабочие чертежи</a>
-    <a href="#model3d">🎬 3D модель</a>
-    <a href="#partitura">🎭 Партитура</a>
-    <a href="#tables">📊 Производственно-экономическая документация</a>
-    <a href="#prokat">🎫 Прокат</a>
-    <a href="#conclusion">🔚 Заключение</a>
-</div></div>
+<div class="sticky-nav">
+    <div class="nav-wrapper">
+        <a href="#about">📖 О работе</a>
+        <a href="#eskizy">🎨 Эскизы</a>
+        <a href="#ikon">🖼️ Иконография</a>
+        <a href="#drawings">📐 План/Фронт/Разрез</a>
+        <a href="#planning">📏 Планировки</a>
+        <a href="#hardsoft">📦 Элементы</a>
+        <a href="#raboche">⚙️ Рабочие чертежи</a>
+        <a href="#model3d">🎬 3D модель</a>
+        <a href="#partitura">🎭 Партитура</a>
+        <a href="#tables">📊 Сметы</a>
+        <a href="#docs">📋 Техническая документация</a>
+        <a href="#prokat">🎫 Прокат</a>
+        <a href="#conclusion">🔚 Заключение</a>
+    </div>
+</div>
 
 <div class="container">
     <header>
-        <div><h1>Художественно-технологическая разработка<br>спектакля «Молодожены»</h1>
-        <p>Режиссёр: К. Богомолов | Художник: Л. Ломакина | Студент: Глухов И.А. | 2026</p></div>
+        <div>
+            <h1>Художественно-технологическая разработка<br>спектакля «Молодожены»</h1>
+            <p>Режиссёр: К. Богомолов | Художник: Л. Ломакина | Студент: Глухов И.А. | 2026</p>
+        </div>
         <div class="qr"><img src="qr.png" alt="QR-код" width="100"></div>
     </header>
 
     <section id="about"><h2>📌 Аннотация</h2><p>Не загружена</p></section>
     <section id="vvedenie"><h2>📖 Введение</h2><p>Не загружено</p></section>
 
-    <section id="eskizy"><h2>🎨 Эскизы декораций и костюмов</h2><h3></h3><div class='gallery'><div class="card" data-type="image"><img src="Дача Укропова.jpg" loading="lazy"><div class="card-footer"><span class="zoom-hint">🔍</span></div></div><div class="card" data-type="image"><img src="Квартира Укропова.jpg" loading="lazy"><div class="card-footer"><span class="zoom-hint">🔍</span></div></div><div class="card" data-type="image"><img src="Киностудия.jpg" loading="lazy"><div class="card-footer"><span class="zoom-hint">🔍</span></div></div><div class="card" data-type="image"><img src="Москва, вечер, афиша.jpg" loading="lazy"><div class="card-footer"><span class="zoom-hint">🔍</span></div></div><div class="card" data-type="image"><img src="Москва, вечер, улица.jpg" loading="lazy"><div class="card-footer"><span class="zoom-hint">🔍</span></div></div><div class="card" data-type="image"><img src="Новосибирск 1.jpg" loading="lazy"><div class="card-footer"><span class="zoom-hint">🔍</span></div></div><div class="card" data-type="image"><img src="Театр 2.jpg" loading="lazy"><div class="card-footer"><span class="zoom-hint">🔍</span></div></div><div class="card" data-type="image"><img src="коробка размеры.jpg" loading="lazy"><div class="card-footer"><span class="zoom-hint">🔍</span></div></div><div class="card" data-type="image"><img src="коробка.jpg" loading="lazy"><div class="card-footer"><span class="zoom-hint">🔍</span></div></div><div class="card" data-type="image"><img src="мебель 0.jpg" loading="lazy"><div class="card-footer"><span class="zoom-hint">🔍</span></div></div><div class="card" data-type="image"><img src="нтжняя сцена.jpg" loading="lazy"><div class="card-footer"><span class="zoom-hint">🔍</span></div></div><div class="card" data-type="image"><img src="план 1.jpg" loading="lazy"><div class="card-footer"><span class="zoom-hint">🔍</span></div></div><div class="card" data-type="image"><img src="стена размеры.jpg" loading="lazy"><div class="card-footer"><span class="zoom-hint">🔍</span></div></div></div></section>
-    <section id="ikon"><h2>🖼️ Иконографический материал</h2><h3></h3><div class='gallery'><div class="card" data-type="image"><img src="0c540e0e0073405387933b42988b617a600x959.jpg" loading="lazy"><div class="card-footer"><span class="zoom-hint">🔍</span></div></div><div class="card" data-type="image"><img src="1.webp" loading="lazy"><div class="card-footer"><span class="zoom-hint">🔍</span></div></div><div class="card" data-type="image"><img src="2.webp" loading="lazy"><div class="card-footer"><span class="zoom-hint">🔍</span></div></div><div class="card" data-type="image"><img src="27099127b1994a27a1ee9d2ee5d6172d900x1184.jpg" loading="lazy"><div class="card-footer"><span class="zoom-hint">🔍</span></div></div><div class="card" data-type="image"><img src="2c24dfea093b4d209ca29ade27d6207e600x379.jpg" loading="lazy"><div class="card-footer"><span class="zoom-hint">🔍</span></div></div><div class="card" data-type="image"><img src="2c476ad862ff4b9cbc29079c8b12a995600x228.jpg" loading="lazy"><div class="card-footer"><span class="zoom-hint">🔍</span></div></div><div class="card" data-type="image"><img src="37f72bd3bd9f41a3b54998b21a0aad561440x784.jpg" loading="lazy"><div class="card-footer"><span class="zoom-hint">🔍</span></div></div><div class="card" data-type="image"><img src="5dd8b4cd19764baa81dcbb069839bf411440x784.jpg" loading="lazy"><div class="card-footer"><span class="zoom-hint">🔍</span></div></div><div class="card" data-type="image"><img src="b121eba49782450092bf5ed474ef66cc1440x784.jpg" loading="lazy"><div class="card-footer"><span class="zoom-hint">🔍</span></div></div><div class="card" data-type="image"><img src="b32e8ee1626a4daf81fb65ebd1fcb42e1440x631.jpg" loading="lazy"><div class="card-footer"><span class="zoom-hint">🔍</span></div></div><div class="card" data-type="image"><img src="c6b04f8dfc8e4f038e5b5f6712116545600x926.jpg" loading="lazy"><div class="card-footer"><span class="zoom-hint">🔍</span></div></div><div class="card" data-type="image"><img src="cce3aa766ac745059a2ee9dbf9626083600x210.jpg" loading="lazy"><div class="card-footer"><span class="zoom-hint">🔍</span></div></div><div class="card" data-type="image"><img src="db44d54f9b4f4bc48de646b6d249efe11440x784.jpg" loading="lazy"><div class="card-footer"><span class="zoom-hint">🔍</span></div></div><div class="card" data-type="image"><img src="Юрий Пименов первые модницы нового квартала.jpg" loading="lazy"><div class="card-footer"><span class="zoom-hint">🔍</span></div></div><div class="card" data-type="image"><img src="Юрий Пименов свадьба на завтрашней улице..png" loading="lazy"><div class="card-footer"><span class="zoom-hint">🔍</span></div></div><div class="card" data-type="image"><img src="юрийй пеменов кусок стекла.png" loading="lazy"><div class="card-footer"><span class="zoom-hint">🔍</span></div></div></div></section>
-
-    <section id="drawings"><h2>📐 Чертежи общего вида (План / Фронт / Разрез)</h2><div class="drawing-comparator"><div class="toggle-buttons"><button class="toggle-btn active" data-layer="plan">План</button><button class="toggle-btn" data-layer="front">Фронт</button><button class="toggle-btn" data-layer="razrez">Разрез</button></div><div class="drawing-layer active-layer" id="plan-layer"><img src="previews\А2 План_preview.png" alt="plan"><div class="card-footer"><a href="А2 План.pdf" download>📥 PDF</a><span class="zoom-hint">🔍</span></div></div><div class="drawing-layer " id="front-layer"><img src="previews\А2 Фронт_preview.png" alt="front"><div class="card-footer"><a href="А2 Фронт.pdf" download>📥 PDF</a><span class="zoom-hint">🔍</span></div></div><div class="drawing-layer " id="razrez-layer"><img src="previews\А2 Разрез_А-А_preview.png" alt="razrez"><div class="card-footer"><a href="А2 Разрез_А-А.pdf" download>📥 PDF</a><span class="zoom-hint">🔍</span></div></div></div></section>
-    <section id="planning"><h2>📏 Планировки (чертежи мебели и расположения)</h2><div class='gallery'>
-                <div class="card" data-type="pdf">
-                    <img src="previews\А2 План_Мебель_1_preview.png" loading="lazy">
-                    <div class="card-footer">
-                        <a href="А2 План_Мебель_1.pdf" target="_blank">📄 Открыть</a>
-                        <a href="А2 План_Мебель_1.pdf" download>📥 Скачать</a>
-                        <span class="zoom-hint">🔍</span>
-                    </div>
-                </div>
-                
-                <div class="card" data-type="pdf">
-                    <img src="previews\А2 План_Мебель_2_preview.png" loading="lazy">
-                    <div class="card-footer">
-                        <a href="А2 План_Мебель_2.pdf" target="_blank">📄 Открыть</a>
-                        <a href="А2 План_Мебель_2.pdf" download>📥 Скачать</a>
-                        <span class="zoom-hint">🔍</span>
-                    </div>
-                </div>
-                
-                <div class="card" data-type="pdf">
-                    <img src="previews\А2 План_Мебель_3_preview.png" loading="lazy">
-                    <div class="card-footer">
-                        <a href="А2 План_Мебель_3.pdf" target="_blank">📄 Открыть</a>
-                        <a href="А2 План_Мебель_3.pdf" download>📥 Скачать</a>
-                        <span class="zoom-hint">🔍</span>
-                    </div>
-                </div>
-                
-                <div class="card" data-type="pdf">
-                    <img src="previews\А2 План_Мебель_4_preview.png" loading="lazy">
-                    <div class="card-footer">
-                        <a href="А2 План_Мебель_4.pdf" target="_blank">📄 Открыть</a>
-                        <a href="А2 План_Мебель_4.pdf" download>📥 Скачать</a>
-                        <span class="zoom-hint">🔍</span>
-                    </div>
-                </div>
-                
-                <div class="card" data-type="pdf">
-                    <img src="previews\А2 Разрез_Б-Б_preview.png" loading="lazy">
-                    <div class="card-footer">
-                        <a href="А2 Разрез_Б-Б.pdf" target="_blank">📄 Открыть</a>
-                        <a href="А2 Разрез_Б-Б.pdf" download>📥 Скачать</a>
-                        <span class="zoom-hint">🔍</span>
-                    </div>
-                </div>
-                
-                <div class="card" data-type="pdf">
-                    <img src="previews\А4 Таблица_Разрез А-А_preview.png" loading="lazy">
-                    <div class="card-footer">
-                        <a href="А4 Таблица_Разрез А-А.pdf" target="_blank">📄 Открыть</a>
-                        <a href="А4 Таблица_Разрез А-А.pdf" download>📥 Скачать</a>
-                        <span class="zoom-hint">🔍</span>
-                    </div>
-                </div>
-                
-                <div class="card" data-type="pdf">
-                    <img src="previews\А4 Таблица_Разрез Б-Б_preview.png" loading="lazy">
-                    <div class="card-footer">
-                        <a href="А4 Таблица_Разрез Б-Б.pdf" target="_blank">📄 Открыть</a>
-                        <a href="А4 Таблица_Разрез Б-Б.pdf" download>📥 Скачать</a>
-                        <span class="zoom-hint">🔍</span>
-                    </div>
-                </div>
-                
-                <div class="card" data-type="pdf">
-                    <img src="previews\Чертежи общего вида_preview.png" loading="lazy">
-                    <div class="card-footer">
-                        <a href="Чертежи общего вида.pdf" target="_blank">📄 Открыть</a>
-                        <a href="Чертежи общего вида.pdf" download>📥 Скачать</a>
-                        <span class="zoom-hint">🔍</span>
-                    </div>
-                </div>
-                </div></section>
-    <section id="hardsoft"><h2>📦 Жёсткие и мягкие элементы декораций</h2><div class='gallery'>
-                <div class="card" data-type="pdf">
-                    <img src="previews\А3 1-7_Потолок (2)_preview.png" loading="lazy">
-                    <div class="card-footer">
-                        <a href="А3 1-7_Потолок (2).pdf" target="_blank">📄 Открыть</a>
-                        <a href="А3 1-7_Потолок (2).pdf" download>📥 Скачать</a>
-                        <span class="zoom-hint">🔍</span>
-                    </div>
-                </div>
-                
-                <div class="card" data-type="pdf">
-                    <img src="previews\А3 1-8_Стена правая (2)_preview.png" loading="lazy">
-                    <div class="card-footer">
-                        <a href="А3 1-8_Стена правая (2).pdf" target="_blank">📄 Открыть</a>
-                        <a href="А3 1-8_Стена правая (2).pdf" download>📥 Скачать</a>
-                        <span class="zoom-hint">🔍</span>
-                    </div>
-                </div>
-                
-                <div class="card" data-type="pdf">
-                    <img src="previews\А3 1-9_Стена левая (2)_preview.png" loading="lazy">
-                    <div class="card-footer">
-                        <a href="А3 1-9_Стена левая (2).pdf" target="_blank">📄 Открыть</a>
-                        <a href="А3 1-9_Стена левая (2).pdf" download>📥 Скачать</a>
-                        <span class="zoom-hint">🔍</span>
-                    </div>
-                </div>
-                
-                <div class="card" data-type="pdf">
-                    <img src="previews\А4 1-10_Афиша_preview.png" loading="lazy">
-                    <div class="card-footer">
-                        <a href="А4 1-10_Афиша.pdf" target="_blank">📄 Открыть</a>
-                        <a href="А4 1-10_Афиша.pdf" download>📥 Скачать</a>
-                        <span class="zoom-hint">🔍</span>
-                    </div>
-                </div>
-                
-                <div class="card" data-type="pdf">
-                    <img src="previews\А4 1-11_Раус_preview.png" loading="lazy">
-                    <div class="card-footer">
-                        <a href="А4 1-11_Раус.pdf" target="_blank">📄 Открыть</a>
-                        <a href="А4 1-11_Раус.pdf" download>📥 Скачать</a>
-                        <span class="zoom-hint">🔍</span>
-                    </div>
-                </div>
-                
-                <div class="card" data-type="pdf">
-                    <img src="previews\А4 1-12_Портальные экраны_preview.png" loading="lazy">
-                    <div class="card-footer">
-                        <a href="А4 1-12_Портальные экраны.pdf" target="_blank">📄 Открыть</a>
-                        <a href="А4 1-12_Портальные экраны.pdf" download>📥 Скачать</a>
-                        <span class="zoom-hint">🔍</span>
-                    </div>
-                </div>
-                
-                <div class="card" data-type="pdf">
-                    <img src="previews\А4 1-2_Станок 1000х350_preview.png" loading="lazy">
-                    <div class="card-footer">
-                        <a href="А4 1-2_Станок 1000х350.pdf" target="_blank">📄 Открыть</a>
-                        <a href="А4 1-2_Станок 1000х350.pdf" download>📥 Скачать</a>
-                        <span class="zoom-hint">🔍</span>
-                    </div>
-                </div>
-                
-                <div class="card" data-type="pdf">
-                    <img src="previews\А4 1-3_Станок 900х350_preview.png" loading="lazy">
-                    <div class="card-footer">
-                        <a href="А4 1-3_Станок 900х350.pdf" target="_blank">📄 Открыть</a>
-                        <a href="А4 1-3_Станок 900х350.pdf" download>📥 Скачать</a>
-                        <span class="zoom-hint">🔍</span>
-                    </div>
-                </div>
-                
-                <div class="card" data-type="pdf">
-                    <img src="previews\А4 1-4_Станок 1000х2000_preview.png" loading="lazy">
-                    <div class="card-footer">
-                        <a href="А4 1-4_Станок 1000х2000.pdf" target="_blank">📄 Открыть</a>
-                        <a href="А4 1-4_Станок 1000х2000.pdf" download>📥 Скачать</a>
-                        <span class="zoom-hint">🔍</span>
-                    </div>
-                </div>
-                
-                <div class="card" data-type="pdf">
-                    <img src="previews\А4 1-5_Станок 900х2000_preview.png" loading="lazy">
-                    <div class="card-footer">
-                        <a href="А4 1-5_Станок 900х2000.pdf" target="_blank">📄 Открыть</a>
-                        <a href="А4 1-5_Станок 900х2000.pdf" download>📥 Скачать</a>
-                        <span class="zoom-hint">🔍</span>
-                    </div>
-                </div>
-                
-                <div class="card" data-type="pdf">
-                    <img src="previews\А4 1-6_Лестница_preview.png" loading="lazy">
-                    <div class="card-footer">
-                        <a href="А4 1-6_Лестница.pdf" target="_blank">📄 Открыть</a>
-                        <a href="А4 1-6_Лестница.pdf" download>📥 Скачать</a>
-                        <span class="zoom-hint">🔍</span>
-                    </div>
-                </div>
-                
-                <div class="card" data-type="pdf">
-                    <img src="previews\Габаритные чертежи все_preview.png" loading="lazy">
-                    <div class="card-footer">
-                        <a href="Габаритные чертежи все.pdf" target="_blank">📄 Открыть</a>
-                        <a href="Габаритные чертежи все.pdf" download>📥 Скачать</a>
-                        <span class="zoom-hint">🔍</span>
-                    </div>
-                </div>
-                
-                <div class="card" data-type="pdf">
-                    <img src="previews\А4 1-1.1_preview.png" loading="lazy">
-                    <div class="card-footer">
-                        <a href="А4 1-1.1.pdf" target="_blank">📄 Открыть</a>
-                        <a href="А4 1-1.1.pdf" download>📥 Скачать</a>
-                        <span class="zoom-hint">🔍</span>
-                    </div>
-                </div>
-                
-                <div class="card" data-type="pdf">
-                    <img src="previews\А4 1-1.10_preview.png" loading="lazy">
-                    <div class="card-footer">
-                        <a href="А4 1-1.10.pdf" target="_blank">📄 Открыть</a>
-                        <a href="А4 1-1.10.pdf" download>📥 Скачать</a>
-                        <span class="zoom-hint">🔍</span>
-                    </div>
-                </div>
-                
-                <div class="card" data-type="pdf">
-                    <img src="previews\А4 1-1.11_preview.png" loading="lazy">
-                    <div class="card-footer">
-                        <a href="А4 1-1.11.pdf" target="_blank">📄 Открыть</a>
-                        <a href="А4 1-1.11.pdf" download>📥 Скачать</a>
-                        <span class="zoom-hint">🔍</span>
-                    </div>
-                </div>
-                
-                <div class="card" data-type="pdf">
-                    <img src="previews\А4 1-1.12_preview.png" loading="lazy">
-                    <div class="card-footer">
-                        <a href="А4 1-1.12.pdf" target="_blank">📄 Открыть</a>
-                        <a href="А4 1-1.12.pdf" download>📥 Скачать</a>
-                        <span class="zoom-hint">🔍</span>
-                    </div>
-                </div>
-                
-                <div class="card" data-type="pdf">
-                    <img src="previews\А4 1-1.13_preview.png" loading="lazy">
-                    <div class="card-footer">
-                        <a href="А4 1-1.13.pdf" target="_blank">📄 Открыть</a>
-                        <a href="А4 1-1.13.pdf" download>📥 Скачать</a>
-                        <span class="zoom-hint">🔍</span>
-                    </div>
-                </div>
-                
-                <div class="card" data-type="pdf">
-                    <img src="previews\А4 1-1.14_preview.png" loading="lazy">
-                    <div class="card-footer">
-                        <a href="А4 1-1.14.pdf" target="_blank">📄 Открыть</a>
-                        <a href="А4 1-1.14.pdf" download>📥 Скачать</a>
-                        <span class="zoom-hint">🔍</span>
-                    </div>
-                </div>
-                
-                <div class="card" data-type="pdf">
-                    <img src="previews\А4 1-1.15_preview.png" loading="lazy">
-                    <div class="card-footer">
-                        <a href="А4 1-1.15.pdf" target="_blank">📄 Открыть</a>
-                        <a href="А4 1-1.15.pdf" download>📥 Скачать</a>
-                        <span class="zoom-hint">🔍</span>
-                    </div>
-                </div>
-                
-                <div class="card" data-type="pdf">
-                    <img src="previews\А4 1-1.16_preview.png" loading="lazy">
-                    <div class="card-footer">
-                        <a href="А4 1-1.16.pdf" target="_blank">📄 Открыть</a>
-                        <a href="А4 1-1.16.pdf" download>📥 Скачать</a>
-                        <span class="zoom-hint">🔍</span>
-                    </div>
-                </div>
-                
-                <div class="card" data-type="pdf">
-                    <img src="previews\А4 1-1.17_preview.png" loading="lazy">
-                    <div class="card-footer">
-                        <a href="А4 1-1.17.pdf" target="_blank">📄 Открыть</a>
-                        <a href="А4 1-1.17.pdf" download>📥 Скачать</a>
-                        <span class="zoom-hint">🔍</span>
-                    </div>
-                </div>
-                
-                <div class="card" data-type="pdf">
-                    <img src="previews\А4 1-1.18_preview.png" loading="lazy">
-                    <div class="card-footer">
-                        <a href="А4 1-1.18.pdf" target="_blank">📄 Открыть</a>
-                        <a href="А4 1-1.18.pdf" download>📥 Скачать</a>
-                        <span class="zoom-hint">🔍</span>
-                    </div>
-                </div>
-                
-                <div class="card" data-type="pdf">
-                    <img src="previews\А4 1-1.19_preview.png" loading="lazy">
-                    <div class="card-footer">
-                        <a href="А4 1-1.19.pdf" target="_blank">📄 Открыть</a>
-                        <a href="А4 1-1.19.pdf" download>📥 Скачать</a>
-                        <span class="zoom-hint">🔍</span>
-                    </div>
-                </div>
-                
-                <div class="card" data-type="pdf">
-                    <img src="previews\А4 1-1.2_preview.png" loading="lazy">
-                    <div class="card-footer">
-                        <a href="А4 1-1.2.pdf" target="_blank">📄 Открыть</a>
-                        <a href="А4 1-1.2.pdf" download>📥 Скачать</a>
-                        <span class="zoom-hint">🔍</span>
-                    </div>
-                </div>
-                
-                <div class="card" data-type="pdf">
-                    <img src="previews\А4 1-1.20_preview.png" loading="lazy">
-                    <div class="card-footer">
-                        <a href="А4 1-1.20.pdf" target="_blank">📄 Открыть</a>
-                        <a href="А4 1-1.20.pdf" download>📥 Скачать</a>
-                        <span class="zoom-hint">🔍</span>
-                    </div>
-                </div>
-                
-                <div class="card" data-type="pdf">
-                    <img src="previews\А4 1-1.3_preview.png" loading="lazy">
-                    <div class="card-footer">
-                        <a href="А4 1-1.3.pdf" target="_blank">📄 Открыть</a>
-                        <a href="А4 1-1.3.pdf" download>📥 Скачать</a>
-                        <span class="zoom-hint">🔍</span>
-                    </div>
-                </div>
-                
-                <div class="card" data-type="pdf">
-                    <img src="previews\А4 1-1.4_preview.png" loading="lazy">
-                    <div class="card-footer">
-                        <a href="А4 1-1.4.pdf" target="_blank">📄 Открыть</a>
-                        <a href="А4 1-1.4.pdf" download>📥 Скачать</a>
-                        <span class="zoom-hint">🔍</span>
-                    </div>
-                </div>
-                
-                <div class="card" data-type="pdf">
-                    <img src="previews\А4 1-1.5_preview.png" loading="lazy">
-                    <div class="card-footer">
-                        <a href="А4 1-1.5.pdf" target="_blank">📄 Открыть</a>
-                        <a href="А4 1-1.5.pdf" download>📥 Скачать</a>
-                        <span class="zoom-hint">🔍</span>
-                    </div>
-                </div>
-                
-                <div class="card" data-type="pdf">
-                    <img src="previews\А4 1-1.6_preview.png" loading="lazy">
-                    <div class="card-footer">
-                        <a href="А4 1-1.6.pdf" target="_blank">📄 Открыть</a>
-                        <a href="А4 1-1.6.pdf" download>📥 Скачать</a>
-                        <span class="zoom-hint">🔍</span>
-                    </div>
-                </div>
-                
-                <div class="card" data-type="pdf">
-                    <img src="previews\А4 1-1.7_preview.png" loading="lazy">
-                    <div class="card-footer">
-                        <a href="А4 1-1.7.pdf" target="_blank">📄 Открыть</a>
-                        <a href="А4 1-1.7.pdf" download>📥 Скачать</a>
-                        <span class="zoom-hint">🔍</span>
-                    </div>
-                </div>
-                
-                <div class="card" data-type="pdf">
-                    <img src="previews\А4 1-1.8_preview.png" loading="lazy">
-                    <div class="card-footer">
-                        <a href="А4 1-1.8.pdf" target="_blank">📄 Открыть</a>
-                        <a href="А4 1-1.8.pdf" download>📥 Скачать</a>
-                        <span class="zoom-hint">🔍</span>
-                    </div>
-                </div>
-                
-                <div class="card" data-type="pdf">
-                    <img src="previews\А4 1-1.9_preview.png" loading="lazy">
-                    <div class="card-footer">
-                        <a href="А4 1-1.9.pdf" target="_blank">📄 Открыть</a>
-                        <a href="А4 1-1.9.pdf" download>📥 Скачать</a>
-                        <span class="zoom-hint">🔍</span>
-                    </div>
-                </div>
-                </div></section>
-    <section id="raboche"><h2>⚙️ Рабочие чертежи</h2><h3>РАБОЧИЕ ЧЕРТЕЖИ ВСЕ</h3><div class='gallery'>
-            <div class="card" data-type="pdf">
-                <img src="previews\РАБОЧИЕ ЧЕРТЕЖИ ВСЕ_preview.png" loading="lazy">
+    <section id="eskizy"><h2>🎨 Эскизы декораций и костюмов</h2><h3></h3><div class='gallery'>
+            <div class="card" data-type="image">
+                <img src="Дача Укропова.jpg" loading="lazy">
+                <div class="card-title">Дача Укропова</div>
                 <div class="card-footer">
-                    <a href="РАБОЧИЕ ЧЕРТЕЖИ ВСЕ.pdf" target="_blank">📄 Открыть</a>
-                    <a href="РАБОЧИЕ ЧЕРТЕЖИ ВСЕ.pdf" download>📥 Скачать</a>
-                    <span class="badge">59 страниц</span>
+                    <span class="zoom-hint">🔍</span>
+                </div>
+            </div>
+            
+            <div class="card" data-type="image">
+                <img src="Квартира Укропова.jpg" loading="lazy">
+                <div class="card-title">Квартира Укропова</div>
+                <div class="card-footer">
+                    <span class="zoom-hint">🔍</span>
+                </div>
+            </div>
+            
+            <div class="card" data-type="image">
+                <img src="Киностудия.jpg" loading="lazy">
+                <div class="card-title">Киностудия</div>
+                <div class="card-footer">
+                    <span class="zoom-hint">🔍</span>
+                </div>
+            </div>
+            
+            <div class="card" data-type="image">
+                <img src="Москва, вечер, афиша.jpg" loading="lazy">
+                <div class="card-title">Москва, вечер, афиша</div>
+                <div class="card-footer">
+                    <span class="zoom-hint">🔍</span>
+                </div>
+            </div>
+            
+            <div class="card" data-type="image">
+                <img src="Москва, вечер, улица.jpg" loading="lazy">
+                <div class="card-title">Москва, вечер, улица</div>
+                <div class="card-footer">
+                    <span class="zoom-hint">🔍</span>
+                </div>
+            </div>
+            
+            <div class="card" data-type="image">
+                <img src="Новосибирск 1.jpg" loading="lazy">
+                <div class="card-title">Новосибирск 1</div>
+                <div class="card-footer">
+                    <span class="zoom-hint">🔍</span>
+                </div>
+            </div>
+            
+            <div class="card" data-type="image">
+                <img src="Театр 2.jpg" loading="lazy">
+                <div class="card-title">Театр 2</div>
+                <div class="card-footer">
+                    <span class="zoom-hint">🔍</span>
+                </div>
+            </div>
+            
+            <div class="card" data-type="image">
+                <img src="коробка размеры.jpg" loading="lazy">
+                <div class="card-title">коробка размеры</div>
+                <div class="card-footer">
+                    <span class="zoom-hint">🔍</span>
+                </div>
+            </div>
+            
+            <div class="card" data-type="image">
+                <img src="коробка.jpg" loading="lazy">
+                <div class="card-title">коробка</div>
+                <div class="card-footer">
+                    <span class="zoom-hint">🔍</span>
+                </div>
+            </div>
+            </div></section>
+    <section id="ikon"><h2>🖼️ Иконографический материал</h2><h3></h3><div class='gallery'>
+            <div class="card" data-type="image">
+                <img src="0c540e0e0073405387933b42988b617a600x959.jpg" loading="lazy">
+                <div class="card-title">0c540e0e0073405387933b42988b617a600x959</div>
+                <div class="card-footer">
+                    <span class="zoom-hint">🔍</span>
+                </div>
+            </div>
+            
+            <div class="card" data-type="image">
+                <img src="1.webp" loading="lazy">
+                <div class="card-title">1</div>
+                <div class="card-footer">
+                    <span class="zoom-hint">🔍</span>
+                </div>
+            </div>
+            
+            <div class="card" data-type="image">
+                <img src="2.webp" loading="lazy">
+                <div class="card-title">2</div>
+                <div class="card-footer">
+                    <span class="zoom-hint">🔍</span>
+                </div>
+            </div>
+            
+            <div class="card" data-type="image">
+                <img src="27099127b1994a27a1ee9d2ee5d6172d900x1184.jpg" loading="lazy">
+                <div class="card-title">27099127b1994a27a1ee9d2ee5d6172d900x1184</div>
+                <div class="card-footer">
+                    <span class="zoom-hint">🔍</span>
+                </div>
+            </div>
+            
+            <div class="card" data-type="image">
+                <img src="2c24dfea093b4d209ca29ade27d6207e600x379.jpg" loading="lazy">
+                <div class="card-title">2c24dfea093b4d209ca29ade27d6207e600x379</div>
+                <div class="card-footer">
+                    <span class="zoom-hint">🔍</span>
+                </div>
+            </div>
+            
+            <div class="card" data-type="image">
+                <img src="2c476ad862ff4b9cbc29079c8b12a995600x228.jpg" loading="lazy">
+                <div class="card-title">2c476ad862ff4b9cbc29079c8b12a995600x228</div>
+                <div class="card-footer">
+                    <span class="zoom-hint">🔍</span>
+                </div>
+            </div>
+            
+            <div class="card" data-type="image">
+                <img src="37f72bd3bd9f41a3b54998b21a0aad561440x784.jpg" loading="lazy">
+                <div class="card-title">37f72bd3bd9f41a3b54998b21a0aad561440x784</div>
+                <div class="card-footer">
+                    <span class="zoom-hint">🔍</span>
+                </div>
+            </div>
+            
+            <div class="card" data-type="image">
+                <img src="5dd8b4cd19764baa81dcbb069839bf411440x784.jpg" loading="lazy">
+                <div class="card-title">5dd8b4cd19764baa81dcbb069839bf411440x784</div>
+                <div class="card-footer">
+                    <span class="zoom-hint">🔍</span>
+                </div>
+            </div>
+            
+            <div class="card" data-type="image">
+                <img src="b121eba49782450092bf5ed474ef66cc1440x784.jpg" loading="lazy">
+                <div class="card-title">b121eba49782450092bf5ed474ef66cc1440x784</div>
+                <div class="card-footer">
+                    <span class="zoom-hint">🔍</span>
+                </div>
+            </div>
+            
+            <div class="card" data-type="image">
+                <img src="b32e8ee1626a4daf81fb65ebd1fcb42e1440x631.jpg" loading="lazy">
+                <div class="card-title">b32e8ee1626a4daf81fb65ebd1fcb42e1440x631</div>
+                <div class="card-footer">
+                    <span class="zoom-hint">🔍</span>
+                </div>
+            </div>
+            
+            <div class="card" data-type="image">
+                <img src="c6b04f8dfc8e4f038e5b5f6712116545600x926.jpg" loading="lazy">
+                <div class="card-title">c6b04f8dfc8e4f038e5b5f6712116545600x926</div>
+                <div class="card-footer">
+                    <span class="zoom-hint">🔍</span>
+                </div>
+            </div>
+            
+            <div class="card" data-type="image">
+                <img src="cce3aa766ac745059a2ee9dbf9626083600x210.jpg" loading="lazy">
+                <div class="card-title">cce3aa766ac745059a2ee9dbf9626083600x210</div>
+                <div class="card-footer">
+                    <span class="zoom-hint">🔍</span>
+                </div>
+            </div>
+            
+            <div class="card" data-type="image">
+                <img src="db44d54f9b4f4bc48de646b6d249efe11440x784.jpg" loading="lazy">
+                <div class="card-title">db44d54f9b4f4bc48de646b6d249efe11440x784</div>
+                <div class="card-footer">
+                    <span class="zoom-hint">🔍</span>
+                </div>
+            </div>
+            
+            <div class="card" data-type="image">
+                <img src="Юрий Пименов первые модницы нового квартала.jpg" loading="lazy">
+                <div class="card-title">Юрий Пименов первые модницы нового квартала</div>
+                <div class="card-footer">
+                    <span class="zoom-hint">🔍</span>
+                </div>
+            </div>
+            
+            <div class="card" data-type="image">
+                <img src="Юрий Пименов свадьба на завтрашней улице..png" loading="lazy">
+                <div class="card-title">Юрий Пименов свадьба на завтрашней улице.</div>
+                <div class="card-footer">
+                    <span class="zoom-hint">🔍</span>
+                </div>
+            </div>
+            
+            <div class="card" data-type="image">
+                <img src="юрийй пеменов кусок стекла.png" loading="lazy">
+                <div class="card-title">юрийй пеменов кусок стекла</div>
+                <div class="card-footer">
                     <span class="zoom-hint">🔍</span>
                 </div>
             </div>
             </div></section>
 
-    <section id="model3d"><h2>🎬 3D модель и визуализация</h2><div><a href="декорации раскрашенные под ДАЧА УКРОПОВА.skp" download class="btn">📥 Скачать SKP-модель</a></div><h3>Рендеры</h3><div class='gallery'><div class="card" data-type="image"><img src="image_2025-11-22_14-12-54.png" loading="lazy"><div class="card-footer"><span class="zoom-hint">🔍</span></div></div><div class="card" data-type="image"><img src="image_2025-11-22_14-13-41.png" loading="lazy"><div class="card-footer"><span class="zoom-hint">🔍</span></div></div><div class="card" data-type="image"><img src="image_2025-11-22_14-13-56.png" loading="lazy"><div class="card-footer"><span class="zoom-hint">🔍</span></div></div><div class="card" data-type="image"><img src="image_2025-11-22_14-14-42.png" loading="lazy"><div class="card-footer"><span class="zoom-hint">🔍</span></div></div><div class="card" data-type="image"><img src="photo_2026-01-31_10-02-07.jpg" loading="lazy"><div class="card-footer"><span class="zoom-hint">🔍</span></div></div></div></section>
+    <section id="drawings"><h2>📐 Чертежи общего вида (План / Фронт / Разрез)</h2><div class="drawing-comparator"><div class="toggle-buttons"><button class="toggle-btn active" data-layer="plan">План</button><button class="toggle-btn" data-layer="front">Фронт</button><button class="toggle-btn" data-layer="razrez">Разрез</button></div><div class="drawing-layer active-layer" id="plan-layer"><a href="А2 План.pdf" target="_blank">📄 Открыть plan</a><br><a href="А2 План.pdf" download>📥 Скачать</a></div><div class="drawing-layer " id="front-layer"><a href="А2 Фронт.pdf" target="_blank">📄 Открыть front</a><br><a href="А2 Фронт.pdf" download>📥 Скачать</a></div><div class="drawing-layer " id="razrez-layer"><a href="А2 Разрез_А-А.pdf" target="_blank">📄 Открыть razrez</a><br><a href="А2 Разрез_А-А.pdf" download>📥 Скачать</a></div></div></section>
+    <section id="planning"><h2>📏 Планировки (чертежи мебели и расположения)</h2><div class='gallery'>
+            <div class="card" data-type="pdf">
+                <div class="pdf-icon">📄</div>
+                <div class="card-title">А2 План_Мебель_1</div>
+                <div class="card-footer">
+                    <a href="А2 План_Мебель_1.pdf" target="_blank">📄 Открыть</a>
+                    <a href="А2 План_Мебель_1.pdf" download>📥 Скачать</a>
+                </div>
+            </div>
+            
+            <div class="card" data-type="pdf">
+                <div class="pdf-icon">📄</div>
+                <div class="card-title">А2 План_Мебель_2</div>
+                <div class="card-footer">
+                    <a href="А2 План_Мебель_2.pdf" target="_blank">📄 Открыть</a>
+                    <a href="А2 План_Мебель_2.pdf" download>📥 Скачать</a>
+                </div>
+            </div>
+            
+            <div class="card" data-type="pdf">
+                <div class="pdf-icon">📄</div>
+                <div class="card-title">А2 План_Мебель_3</div>
+                <div class="card-footer">
+                    <a href="А2 План_Мебель_3.pdf" target="_blank">📄 Открыть</a>
+                    <a href="А2 План_Мебель_3.pdf" download>📥 Скачать</a>
+                </div>
+            </div>
+            
+            <div class="card" data-type="pdf">
+                <div class="pdf-icon">📄</div>
+                <div class="card-title">А2 План_Мебель_4</div>
+                <div class="card-footer">
+                    <a href="А2 План_Мебель_4.pdf" target="_blank">📄 Открыть</a>
+                    <a href="А2 План_Мебель_4.pdf" download>📥 Скачать</a>
+                </div>
+            </div>
+            
+            <div class="card" data-type="pdf">
+                <div class="pdf-icon">📄</div>
+                <div class="card-title">А2 Разрез_Б-Б</div>
+                <div class="card-footer">
+                    <a href="А2 Разрез_Б-Б.pdf" target="_blank">📄 Открыть</a>
+                    <a href="А2 Разрез_Б-Б.pdf" download>📥 Скачать</a>
+                </div>
+            </div>
+            
+            <div class="card" data-type="pdf">
+                <div class="pdf-icon">📄</div>
+                <div class="card-title">А4 Таблица_Разрез А-А</div>
+                <div class="card-footer">
+                    <a href="А4 Таблица_Разрез А-А.pdf" target="_blank">📄 Открыть</a>
+                    <a href="А4 Таблица_Разрез А-А.pdf" download>📥 Скачать</a>
+                </div>
+            </div>
+            
+            <div class="card" data-type="pdf">
+                <div class="pdf-icon">📄</div>
+                <div class="card-title">А4 Таблица_Разрез Б-Б</div>
+                <div class="card-footer">
+                    <a href="А4 Таблица_Разрез Б-Б.pdf" target="_blank">📄 Открыть</a>
+                    <a href="А4 Таблица_Разрез Б-Б.pdf" download>📥 Скачать</a>
+                </div>
+            </div>
+            
+            <div class="card" data-type="pdf">
+                <div class="pdf-icon">📄</div>
+                <div class="card-title">Чертежи общего вида</div>
+                <div class="card-footer">
+                    <a href="Чертежи общего вида.pdf" target="_blank">📄 Открыть</a>
+                    <a href="Чертежи общего вида.pdf" download>📥 Скачать</a>
+                </div>
+            </div>
+            </div></section>
+    <section id="hardsoft"><h2>📦 Жёсткие и мягкие элементы декораций</h2><div class='gallery'>
+            <div class="card" data-type="pdf">
+                <div class="pdf-icon">📄</div>
+                <div class="card-title">А3 1-7_Потолок (2)</div>
+                <div class="card-footer">
+                    <a href="А3 1-7_Потолок (2).pdf" target="_blank">📄 Открыть</a>
+                    <a href="А3 1-7_Потолок (2).pdf" download>📥 Скачать</a>
+                </div>
+            </div>
+            
+            <div class="card" data-type="pdf">
+                <div class="pdf-icon">📄</div>
+                <div class="card-title">А3 1-8_Стена правая (2)</div>
+                <div class="card-footer">
+                    <a href="А3 1-8_Стена правая (2).pdf" target="_blank">📄 Открыть</a>
+                    <a href="А3 1-8_Стена правая (2).pdf" download>📥 Скачать</a>
+                </div>
+            </div>
+            
+            <div class="card" data-type="pdf">
+                <div class="pdf-icon">📄</div>
+                <div class="card-title">А3 1-9_Стена левая (2)</div>
+                <div class="card-footer">
+                    <a href="А3 1-9_Стена левая (2).pdf" target="_blank">📄 Открыть</a>
+                    <a href="А3 1-9_Стена левая (2).pdf" download>📥 Скачать</a>
+                </div>
+            </div>
+            
+            <div class="card" data-type="pdf">
+                <div class="pdf-icon">📄</div>
+                <div class="card-title">А4 1-10_Афиша</div>
+                <div class="card-footer">
+                    <a href="А4 1-10_Афиша.pdf" target="_blank">📄 Открыть</a>
+                    <a href="А4 1-10_Афиша.pdf" download>📥 Скачать</a>
+                </div>
+            </div>
+            
+            <div class="card" data-type="pdf">
+                <div class="pdf-icon">📄</div>
+                <div class="card-title">А4 1-11_Раус</div>
+                <div class="card-footer">
+                    <a href="А4 1-11_Раус.pdf" target="_blank">📄 Открыть</a>
+                    <a href="А4 1-11_Раус.pdf" download>📥 Скачать</a>
+                </div>
+            </div>
+            
+            <div class="card" data-type="pdf">
+                <div class="pdf-icon">📄</div>
+                <div class="card-title">А4 1-12_Портальные экраны</div>
+                <div class="card-footer">
+                    <a href="А4 1-12_Портальные экраны.pdf" target="_blank">📄 Открыть</a>
+                    <a href="А4 1-12_Портальные экраны.pdf" download>📥 Скачать</a>
+                </div>
+            </div>
+            
+            <div class="card" data-type="pdf">
+                <div class="pdf-icon">📄</div>
+                <div class="card-title">А4 1-2_Станок 1000х350</div>
+                <div class="card-footer">
+                    <a href="А4 1-2_Станок 1000х350.pdf" target="_blank">📄 Открыть</a>
+                    <a href="А4 1-2_Станок 1000х350.pdf" download>📥 Скачать</a>
+                </div>
+            </div>
+            
+            <div class="card" data-type="pdf">
+                <div class="pdf-icon">📄</div>
+                <div class="card-title">А4 1-3_Станок 900х350</div>
+                <div class="card-footer">
+                    <a href="А4 1-3_Станок 900х350.pdf" target="_blank">📄 Открыть</a>
+                    <a href="А4 1-3_Станок 900х350.pdf" download>📥 Скачать</a>
+                </div>
+            </div>
+            
+            <div class="card" data-type="pdf">
+                <div class="pdf-icon">📄</div>
+                <div class="card-title">А4 1-4_Станок 1000х2000</div>
+                <div class="card-footer">
+                    <a href="А4 1-4_Станок 1000х2000.pdf" target="_blank">📄 Открыть</a>
+                    <a href="А4 1-4_Станок 1000х2000.pdf" download>📥 Скачать</a>
+                </div>
+            </div>
+            
+            <div class="card" data-type="pdf">
+                <div class="pdf-icon">📄</div>
+                <div class="card-title">А4 1-5_Станок 900х2000</div>
+                <div class="card-footer">
+                    <a href="А4 1-5_Станок 900х2000.pdf" target="_blank">📄 Открыть</a>
+                    <a href="А4 1-5_Станок 900х2000.pdf" download>📥 Скачать</a>
+                </div>
+            </div>
+            
+            <div class="card" data-type="pdf">
+                <div class="pdf-icon">📄</div>
+                <div class="card-title">А4 1-6_Лестница</div>
+                <div class="card-footer">
+                    <a href="А4 1-6_Лестница.pdf" target="_blank">📄 Открыть</a>
+                    <a href="А4 1-6_Лестница.pdf" download>📥 Скачать</a>
+                </div>
+            </div>
+            
+            <div class="card" data-type="pdf">
+                <div class="pdf-icon">📄</div>
+                <div class="card-title">Габаритные чертежи все</div>
+                <div class="card-footer">
+                    <a href="Габаритные чертежи все.pdf" target="_blank">📄 Открыть</a>
+                    <a href="Габаритные чертежи все.pdf" download>📥 Скачать</a>
+                </div>
+            </div>
+            
+            <div class="card" data-type="pdf">
+                <div class="pdf-icon">📄</div>
+                <div class="card-title">А4 1-1.1</div>
+                <div class="card-footer">
+                    <a href="А4 1-1.1.pdf" target="_blank">📄 Открыть</a>
+                    <a href="А4 1-1.1.pdf" download>📥 Скачать</a>
+                </div>
+            </div>
+            
+            <div class="card" data-type="pdf">
+                <div class="pdf-icon">📄</div>
+                <div class="card-title">А4 1-1.10</div>
+                <div class="card-footer">
+                    <a href="А4 1-1.10.pdf" target="_blank">📄 Открыть</a>
+                    <a href="А4 1-1.10.pdf" download>📥 Скачать</a>
+                </div>
+            </div>
+            
+            <div class="card" data-type="pdf">
+                <div class="pdf-icon">📄</div>
+                <div class="card-title">А4 1-1.11</div>
+                <div class="card-footer">
+                    <a href="А4 1-1.11.pdf" target="_blank">📄 Открыть</a>
+                    <a href="А4 1-1.11.pdf" download>📥 Скачать</a>
+                </div>
+            </div>
+            
+            <div class="card" data-type="pdf">
+                <div class="pdf-icon">📄</div>
+                <div class="card-title">А4 1-1.12</div>
+                <div class="card-footer">
+                    <a href="А4 1-1.12.pdf" target="_blank">📄 Открыть</a>
+                    <a href="А4 1-1.12.pdf" download>📥 Скачать</a>
+                </div>
+            </div>
+            
+            <div class="card" data-type="pdf">
+                <div class="pdf-icon">📄</div>
+                <div class="card-title">А4 1-1.13</div>
+                <div class="card-footer">
+                    <a href="А4 1-1.13.pdf" target="_blank">📄 Открыть</a>
+                    <a href="А4 1-1.13.pdf" download>📥 Скачать</a>
+                </div>
+            </div>
+            
+            <div class="card" data-type="pdf">
+                <div class="pdf-icon">📄</div>
+                <div class="card-title">А4 1-1.14</div>
+                <div class="card-footer">
+                    <a href="А4 1-1.14.pdf" target="_blank">📄 Открыть</a>
+                    <a href="А4 1-1.14.pdf" download>📥 Скачать</a>
+                </div>
+            </div>
+            
+            <div class="card" data-type="pdf">
+                <div class="pdf-icon">📄</div>
+                <div class="card-title">А4 1-1.15</div>
+                <div class="card-footer">
+                    <a href="А4 1-1.15.pdf" target="_blank">📄 Открыть</a>
+                    <a href="А4 1-1.15.pdf" download>📥 Скачать</a>
+                </div>
+            </div>
+            
+            <div class="card" data-type="pdf">
+                <div class="pdf-icon">📄</div>
+                <div class="card-title">А4 1-1.16</div>
+                <div class="card-footer">
+                    <a href="А4 1-1.16.pdf" target="_blank">📄 Открыть</a>
+                    <a href="А4 1-1.16.pdf" download>📥 Скачать</a>
+                </div>
+            </div>
+            
+            <div class="card" data-type="pdf">
+                <div class="pdf-icon">📄</div>
+                <div class="card-title">А4 1-1.17</div>
+                <div class="card-footer">
+                    <a href="А4 1-1.17.pdf" target="_blank">📄 Открыть</a>
+                    <a href="А4 1-1.17.pdf" download>📥 Скачать</a>
+                </div>
+            </div>
+            
+            <div class="card" data-type="pdf">
+                <div class="pdf-icon">📄</div>
+                <div class="card-title">А4 1-1.18</div>
+                <div class="card-footer">
+                    <a href="А4 1-1.18.pdf" target="_blank">📄 Открыть</a>
+                    <a href="А4 1-1.18.pdf" download>📥 Скачать</a>
+                </div>
+            </div>
+            
+            <div class="card" data-type="pdf">
+                <div class="pdf-icon">📄</div>
+                <div class="card-title">А4 1-1.19</div>
+                <div class="card-footer">
+                    <a href="А4 1-1.19.pdf" target="_blank">📄 Открыть</a>
+                    <a href="А4 1-1.19.pdf" download>📥 Скачать</a>
+                </div>
+            </div>
+            
+            <div class="card" data-type="pdf">
+                <div class="pdf-icon">📄</div>
+                <div class="card-title">А4 1-1.2</div>
+                <div class="card-footer">
+                    <a href="А4 1-1.2.pdf" target="_blank">📄 Открыть</a>
+                    <a href="А4 1-1.2.pdf" download>📥 Скачать</a>
+                </div>
+            </div>
+            
+            <div class="card" data-type="pdf">
+                <div class="pdf-icon">📄</div>
+                <div class="card-title">А4 1-1.20</div>
+                <div class="card-footer">
+                    <a href="А4 1-1.20.pdf" target="_blank">📄 Открыть</a>
+                    <a href="А4 1-1.20.pdf" download>📥 Скачать</a>
+                </div>
+            </div>
+            
+            <div class="card" data-type="pdf">
+                <div class="pdf-icon">📄</div>
+                <div class="card-title">А4 1-1.3</div>
+                <div class="card-footer">
+                    <a href="А4 1-1.3.pdf" target="_blank">📄 Открыть</a>
+                    <a href="А4 1-1.3.pdf" download>📥 Скачать</a>
+                </div>
+            </div>
+            
+            <div class="card" data-type="pdf">
+                <div class="pdf-icon">📄</div>
+                <div class="card-title">А4 1-1.4</div>
+                <div class="card-footer">
+                    <a href="А4 1-1.4.pdf" target="_blank">📄 Открыть</a>
+                    <a href="А4 1-1.4.pdf" download>📥 Скачать</a>
+                </div>
+            </div>
+            
+            <div class="card" data-type="pdf">
+                <div class="pdf-icon">📄</div>
+                <div class="card-title">А4 1-1.5</div>
+                <div class="card-footer">
+                    <a href="А4 1-1.5.pdf" target="_blank">📄 Открыть</a>
+                    <a href="А4 1-1.5.pdf" download>📥 Скачать</a>
+                </div>
+            </div>
+            
+            <div class="card" data-type="pdf">
+                <div class="pdf-icon">📄</div>
+                <div class="card-title">А4 1-1.6</div>
+                <div class="card-footer">
+                    <a href="А4 1-1.6.pdf" target="_blank">📄 Открыть</a>
+                    <a href="А4 1-1.6.pdf" download>📥 Скачать</a>
+                </div>
+            </div>
+            
+            <div class="card" data-type="pdf">
+                <div class="pdf-icon">📄</div>
+                <div class="card-title">А4 1-1.7</div>
+                <div class="card-footer">
+                    <a href="А4 1-1.7.pdf" target="_blank">📄 Открыть</a>
+                    <a href="А4 1-1.7.pdf" download>📥 Скачать</a>
+                </div>
+            </div>
+            
+            <div class="card" data-type="pdf">
+                <div class="pdf-icon">📄</div>
+                <div class="card-title">А4 1-1.8</div>
+                <div class="card-footer">
+                    <a href="А4 1-1.8.pdf" target="_blank">📄 Открыть</a>
+                    <a href="А4 1-1.8.pdf" download>📥 Скачать</a>
+                </div>
+            </div>
+            
+            <div class="card" data-type="pdf">
+                <div class="pdf-icon">📄</div>
+                <div class="card-title">А4 1-1.9</div>
+                <div class="card-footer">
+                    <a href="А4 1-1.9.pdf" target="_blank">📄 Открыть</a>
+                    <a href="А4 1-1.9.pdf" download>📥 Скачать</a>
+                </div>
+            </div>
+            </div></section>
+    <section id="raboche"><h2>⚙️ Рабочие чертежи</h2><h3>РАБОЧИЕ ЧЕРТЕЖИ ВСЕ</h3><div class='gallery'>
+        <div class="card" data-type="pdf">
+            <div class="pdf-icon">📄</div>
+            <div class="card-title">РАБОЧИЕ ЧЕРТЕЖИ ВСЕ</div>
+            <div class="card-footer">
+                <a href="РАБОЧИЕ ЧЕРТЕЖИ ВСЕ.pdf" target="_blank">📄 Открыть</a>
+                <a href="РАБОЧИЕ ЧЕРТЕЖИ ВСЕ.pdf" download>📥 Скачать</a>
+                <span class="badge">59 страниц</span>
+            </div>
+        </div>
+        </div></section>
 
-    <section id="partitura"><h2>🎭 Сценографическая партитура</h2><p>Раздел временно не заполнен.</p></section>
+    <section id="model3d"><h2>🎬 3D модель и визуализация</h2><div><a href="декорации раскрашенные под ДАЧА УКРОПОВА.skp" download class="btn">📥 Скачать SKP-модель</a></div><h3>Рендеры</h3><div class='gallery'>
+            <div class="card" data-type="image">
+                <img src="image_2025-11-22_14-12-54.png" loading="lazy">
+                <div class="card-title">image_2025-11-22_14-12-54</div>
+                <div class="card-footer">
+                    <span class="zoom-hint">🔍</span>
+                </div>
+            </div>
+            
+            <div class="card" data-type="image">
+                <img src="image_2025-11-22_14-13-41.png" loading="lazy">
+                <div class="card-title">image_2025-11-22_14-13-41</div>
+                <div class="card-footer">
+                    <span class="zoom-hint">🔍</span>
+                </div>
+            </div>
+            
+            <div class="card" data-type="image">
+                <img src="image_2025-11-22_14-13-56.png" loading="lazy">
+                <div class="card-title">image_2025-11-22_14-13-56</div>
+                <div class="card-footer">
+                    <span class="zoom-hint">🔍</span>
+                </div>
+            </div>
+            
+            <div class="card" data-type="image">
+                <img src="image_2025-11-22_14-14-42.png" loading="lazy">
+                <div class="card-title">image_2025-11-22_14-14-42</div>
+                <div class="card-footer">
+                    <span class="zoom-hint">🔍</span>
+                </div>
+            </div>
+            
+            <div class="card" data-type="image">
+                <img src="photo_2026-01-31_10-02-07.jpg" loading="lazy">
+                <div class="card-title">photo_2026-01-31_10-02-07</div>
+                <div class="card-footer">
+                    <span class="zoom-hint">🔍</span>
+                </div>
+            </div>
+            </div></section>
+
+    <section id="partitura"><h2>🎭 Сценографическая партитура</h2>
+    <div class="partitura">
+        <p>Спектакль состоит из двух действий.</p>
+        <ul>
+            <li><strong>1 действие</strong> – 56 минут. Включает сцены на бульваре, в квартире молодожёнов, репетицию в театре. Перестановка стола и стульев на 39-й минуте.</li>
+            <li><strong>Антракт</strong> – 15 минут. Перестановка декораций: убрана урна, переставлены стол и стулья.</li>
+            <li><strong>2 действие</strong> – 51 минута. Сцены в парке, на даче. Опускание и подъём афиши, перестановка мебели во время припева песни.</li>
+        </ul>
+        <p>Подробная сценографическая партитура разрабатывается на основе видеозаписи спектакля и чертежей планировок.</p>
+    </div>
+    </section>
 
     <section id="tables"><h2>📊 Производственно-экономическая документация</h2><div class="gallery">
                 <div class="card" data-type="excel">
-                    <img src="previews\01 Сводная_смета 5.04.26_excel_preview.png" loading="lazy">
+                    <img src="previews/01 Сводная_смета 5.04.26_excel_preview.png" loading="lazy">
+                    <div class="card-title">01 Сводная_смета 5.04.26</div>
                     <div class="card-footer">
                         <a href="01 Сводная_смета 5.04.26.xlsx" download>📥 Скачать Excel</a>
                         <span class="zoom-hint">🔍</span>
@@ -460,7 +881,8 @@
                 </div>
                 
                 <div class="card" data-type="excel">
-                    <img src="previews\03 Смета_овеществленных_затрат_обновленная_excel_preview.png" loading="lazy">
+                    <img src="previews/03 Смета_овеществленных_затрат_обновленная_excel_preview.png" loading="lazy">
+                    <div class="card-title">03 Смета_овеществленных_затрат_обновленная</div>
                     <div class="card-footer">
                         <a href="03 Смета_овеществленных_затрат_обновленная.xlsx" download>📥 Скачать Excel</a>
                         <span class="zoom-hint">🔍</span>
@@ -468,7 +890,8 @@
                 </div>
                 
                 <div class="card" data-type="excel">
-                    <img src="previews\05 Смета_на_рекламу 5.04.26_excel_preview.png" loading="lazy">
+                    <img src="previews/05 Смета_на_рекламу 5.04.26_excel_preview.png" loading="lazy">
+                    <div class="card-title">05 Смета_на_рекламу 5.04.26</div>
                     <div class="card-footer">
                         <a href="05 Смета_на_рекламу 5.04.26.xlsx" download>📥 Скачать Excel</a>
                         <span class="zoom-hint">🔍</span>
@@ -476,7 +899,8 @@
                 </div>
                 
                 <div class="card" data-type="excel">
-                    <img src="previews\График выпуска спектакля молодожены_excel_preview.png" loading="lazy">
+                    <img src="previews/График выпуска спектакля молодожены_excel_preview.png" loading="lazy">
+                    <div class="card-title">График выпуска спектакля молодожены</div>
                     <div class="card-footer">
                         <a href="График выпуска спектакля молодожены.xlsx" download>📥 Скачать Excel</a>
                         <span class="zoom-hint">🔍</span>
@@ -484,9 +908,35 @@
                 </div>
                 </div></section>
 
+    <section id="docs">
+        <h2>📋 Техническая документация</h2>
+        <h3>Монтировочная опись</h3><div class='gallery'>
+            <div class="card" data-type="pdf">
+                <div class="pdf-icon">📄</div>
+                <div class="card-title">МО МОЛОДОЖЕНЫ 1</div>
+                <div class="card-footer">
+                    <a href="МО МОЛОДОЖЕНЫ 1.pdf" target="_blank">📄 Открыть</a>
+                    <a href="МО МОЛОДОЖЕНЫ 1.pdf" download>📥 Скачать</a>
+                </div>
+            </div>
+            </div>
+        <h3>Паспорт сценической площадки</h3><h3>Паспорт сцены</h3><div class='gallery'>
+        <div class="card" data-type="pdf">
+            <div class="pdf-icon">📄</div>
+            <div class="card-title">ПАСПОРТ СЦЕНЫ</div>
+            <div class="card-footer">
+                <a href="ПАСПОРТ СЦЕНЫ.pdf" target="_blank">📄 Открыть</a>
+                <a href="ПАСПОРТ СЦЕНЫ.pdf" download>📥 Скачать</a>
+                
+            </div>
+        </div>
+        </div>
+    </section>
+
     <section id="prokat"><h2>🎫 Документация по прокату (ТЗ, гастрольные листы)</h2><div class="gallery">
                 <div class="card" data-type="prokat">
                     <div class="prokat-icon">📄</div>
+                    <div class="card-title">ТЗ НА ГАСТРОЛИ МОЛОДОЖЕНЫ</div>
                     <div class="card-footer">
                         <a href="ТЗ НА ГАСТРОЛИ МОЛОДОЖЕНЫ.docx" target="_blank">Просмотр</a>
                         <a href="ТЗ НА ГАСТРОЛИ МОЛОДОЖЕНЫ.docx" download>📥 Скачать</a>
@@ -495,6 +945,7 @@
                 
                 <div class="card" data-type="prokat">
                     <div class="prokat-icon">🌐</div>
+                    <div class="card-title">ТЗ_Молодожены_ГБУК СО Театр Грань_20260610</div>
                     <div class="card-footer">
                         <a href="ТЗ_Молодожены_ГБУК СО Театр Грань_20260610.html" target="_blank">Открыть HTML</a>
                         <a href="ТЗ_Молодожены_ГБУК СО Театр Грань_20260610.html" download>📥 Скачать</a>
@@ -503,6 +954,7 @@
                 
                 <div class="card" data-type="prokat">
                     <div class="prokat-icon">📊</div>
+                    <div class="card-title">ТЗ_Молодожены_ГБУК СО Театр Грань_20260610</div>
                     <div class="card-footer">
                         <a href="ТЗ_Молодожены_ГБУК СО Театр Грань_20260610.xlsx" download>📥 Скачать Excel</a>
                     </div>
@@ -517,13 +969,16 @@
 <div class="lightbox" onclick="closeLightbox()"><img id="lightbox-img" src=""></div>
 
 <script>
-    const allImgs = document.querySelectorAll('.gallery img, .card img, .drawing-layer img');
+    const allImgs = document.querySelectorAll('.gallery img, .card img');
     const lb = document.querySelector('.lightbox');
     const lbImg = document.getElementById('lightbox-img');
     allImgs.forEach(img => img.addEventListener('click', (e) => {
-        e.stopPropagation(); lbImg.src = img.src; lb.style.display = 'flex';
+        e.stopPropagation();
+        lbImg.src = img.src;
+        lb.style.display = 'flex';
     }));
     function closeLightbox() { lb.style.display = 'none'; }
+
     const tBtns = document.querySelectorAll('.toggle-btn');
     const layers = document.querySelectorAll('.drawing-layer');
     if(tBtns.length) {
@@ -535,6 +990,7 @@
             document.getElementById(layer + '-layer').classList.add('active-layer');
         }));
     }
+
     document.querySelectorAll('.sticky-nav a').forEach(anchor => {
         anchor.addEventListener('click', function(e) {
             e.preventDefault();
@@ -543,11 +999,17 @@
             if(target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
         });
     });
+
     const cards = document.querySelectorAll('.card');
     const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => { if(entry.isIntersecting) entry.target.style.animationPlayState = 'running'; });
+        entries.forEach(entry => {
+            if(entry.isIntersecting) entry.target.style.animationPlayState = 'running';
+        });
     }, { threshold: 0.2 });
-    cards.forEach(card => { card.style.animationPlayState = 'paused'; observer.observe(card); });
+    cards.forEach(card => {
+        card.style.animationPlayState = 'paused';
+        observer.observe(card);
+    });
 </script>
 </body>
 </html>
