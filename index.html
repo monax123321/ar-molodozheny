@@ -14,6 +14,18 @@
             font-family: 'Segoe UI', Roboto, sans-serif;
             padding-top: 70px;
         }
+        /* Прогресс-бар прокрутки */
+        .progress-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 0%;
+            height: 4px;
+            background: #D4AF37;
+            z-index: 1001;
+            transition: width 0.1s;
+            box-shadow: 0 0 5px #D4AF37;
+        }
         .container {
             background: rgba(10,10,10,0.75);
             backdrop-filter: blur(4px);
@@ -56,6 +68,8 @@
                 flex-direction: column;
                 align-items: center;
                 display: none;
+                background: #1C2E4A;
+                padding: 10px 0;
             }
             .nav-wrapper.open {
                 display: flex;
@@ -63,9 +77,6 @@
             .burger {
                 display: block;
                 text-align: right;
-            }
-            .sticky-nav .burger {
-                padding: 0 20px;
             }
             .sticky-nav {
                 display: flex;
@@ -86,6 +97,41 @@
             background: #D4AF37;
             color: #1C2E4A;
             transform: scale(1.05);
+        }
+        .sticky-nav a.active {
+            background: #D4AF37;
+            color: #1C2E4A;
+            font-weight: bold;
+            box-shadow: 0 0 8px #D4AF37;
+        }
+        /* Кнопка "Наверх" */
+        .go-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 50px;
+            height: 50px;
+            background: #D4AF37;
+            color: #1C2E4A;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            text-decoration: none;
+            opacity: 0;
+            visibility: hidden;
+            transition: 0.3s;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+        }
+        .go-top.show {
+            opacity: 1;
+            visibility: visible;
+        }
+        .go-top:hover {
+            transform: scale(1.1);
+            background: #D4AF37;
         }
         header {
             background: linear-gradient(135deg, #1C2E4A, #0f1a2f);
@@ -235,6 +281,7 @@
     </style>
 </head>
 <body>
+<div class="progress-bar" id="progressBar"></div>
 <div class="sticky-nav">
     <div class="burger" id="burgerBtn">☰</div>
     <div class="nav-wrapper" id="navMenu">
@@ -253,6 +300,7 @@
         <a href="#conclusion">🔚 Заключение</a>
     </div>
 </div>
+<a href="#" class="go-top" id="goTopBtn">↑</a>
 
 <div class="container">
     <header>
@@ -1066,11 +1114,13 @@
 <div class="lightbox" onclick="closeLightbox()"><img id="lightbox-img" src=""></div>
 
 <script>
+    // Бургер-меню
     const burger = document.getElementById('burgerBtn');
     const navMenu = document.getElementById('navMenu');
     burger.addEventListener('click', () => {
         navMenu.classList.toggle('open');
     });
+    // Закрытие бургер-меню после клика по ссылке
     document.querySelectorAll('.sticky-nav a').forEach(link => {
         link.addEventListener('click', () => {
             if (window.innerWidth <= 800) {
@@ -1079,6 +1129,52 @@
         });
     });
 
+    // Прогресс-бар прокрутки
+    window.addEventListener('scroll', () => {
+        const winScroll = document.documentElement.scrollTop;
+        const height = document.documentElement.scrollHeight - window.innerHeight;
+        const scrolled = (winScroll / height) * 100;
+        document.getElementById('progressBar').style.width = scrolled + '%';
+    });
+
+    // Кнопка "Наверх"
+    const goTopBtn = document.getElementById('goTopBtn');
+    window.addEventListener('scroll', () => {
+        if (window.scrollY > 300) {
+            goTopBtn.classList.add('show');
+        } else {
+            goTopBtn.classList.remove('show');
+        }
+    });
+    goTopBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+
+    // Подсветка активного пункта меню при прокрутке
+    const sections = document.querySelectorAll('section');
+    const navLinks = document.querySelectorAll('.sticky-nav a');
+    const observerOptions = {
+        root: null,
+        rootMargin: '-30% 0px -70% 0px',
+        threshold: 0
+    };
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const id = entry.target.getAttribute('id');
+                navLinks.forEach(link => {
+                    link.classList.remove('active');
+                    if (link.getAttribute('href') === '#' + id) {
+                        link.classList.add('active');
+                    }
+                });
+            }
+        });
+    }, observerOptions);
+    sections.forEach(section => observer.observe(section));
+
+    // Лайтбокс для изображений
     const allImgs = document.querySelectorAll('.gallery img, .card img');
     const lb = document.querySelector('.lightbox');
     const lbImg = document.getElementById('lightbox-img');
@@ -1089,6 +1185,7 @@
     }));
     function closeLightbox() { lb.style.display = 'none'; }
 
+    // Переключатель чертежей
     const tBtns = document.querySelectorAll('.toggle-btn');
     const layers = document.querySelectorAll('.drawing-layer');
     if(tBtns.length) {
@@ -1101,6 +1198,7 @@
         }));
     }
 
+    // Плавная прокрутка при клике на пункты меню
     document.querySelectorAll('.sticky-nav a').forEach(anchor => {
         anchor.addEventListener('click', function(e) {
             e.preventDefault();
@@ -1110,15 +1208,16 @@
         });
     });
 
+    // Анимация появления карточек
     const cards = document.querySelectorAll('.card');
-    const observer = new IntersectionObserver((entries) => {
+    const cardsObserver = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if(entry.isIntersecting) entry.target.style.animationPlayState = 'running';
         });
     }, { threshold: 0.2 });
     cards.forEach(card => {
         card.style.animationPlayState = 'paused';
-        observer.observe(card);
+        cardsObserver.observe(card);
     });
 </script>
 </body>
